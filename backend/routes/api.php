@@ -37,7 +37,7 @@ Route::get('{country}', function ($country) {
     }
 
     return new CountriesResource($country);
-})->where('name', '[A-Za-z]+');;
+})->where('name', '[A-Za-z]+');
 
 \Igaster\LaravelCities\Geo::ApiRoutes();
 

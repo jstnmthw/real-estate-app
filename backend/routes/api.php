@@ -48,7 +48,7 @@ Route::group(['prefix' => 'geo'], function() {
     Route::get('parent/{id}',[\Igaster\LaravelCities\Geo::class, 'getParent']);
     Route::get('country/{code}',[\Igaster\LaravelCities\Geo::class, 'country']);
     Route::get('countries',[\Igaster\LaravelCities\Geo::class, 'getCountries']);
-    Route::get('ancestors/{id}',[\Igaster\LaravelCities\Geo::class, 'getA']);
+    Route::get('ancestors/{id}',[\Igaster\LaravelCities\Geo::class, 'getAncensors']);
     Route::get('breadcrumbs/{id}',[\Igaster\LaravelCities\Geo::class, 'breadcrumbs']);
 });
 

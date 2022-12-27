@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    html, body {
+        @apply text-neutral-800 min-h-full bg-white;
+    }
+}

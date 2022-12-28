@@ -41,7 +41,7 @@ class Property extends Model
      */
     protected $appends = ['sales_title', 'rental_title'];
 
-    protected $with = [];
+    protected $with = ['propertyType', 'district'];
 
     /**
      * Get the name of the index associated with the model.
@@ -159,7 +159,7 @@ class Property extends Model
     protected function salesTitle(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->bedrooms . ' bedrooms ' . $this->bathrooms . ' bathrooms ' . $this->propertyType->name . ' for sale in ' . $this->district->name
+            get: fn ($value) => $this?->bedrooms . ' bedrooms ' . $this->bathrooms . ' bathrooms ' . $this->propertyType?->name . ' for sale in ' . $this->district?->name
         );
     }
 
@@ -172,7 +172,7 @@ class Property extends Model
     protected function rentalTitle(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->bedrooms . ' bedrooms ' . $this->bathrooms . ' bathrooms ' . $this->propertyType->name . ' for rent in ' . $this->district->name
+            get: fn ($value) => $this->bedrooms . ' bedrooms ' . $this->bathrooms . ' bathrooms ' . $this->propertyType?->name . ' for rent in ' . $this->district?->name
         );
     }
 

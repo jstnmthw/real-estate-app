@@ -50,7 +50,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return response()->json();
+        return response()->json(new PropertyResource($property));
     }
 
     /**

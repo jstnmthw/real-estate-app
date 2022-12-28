@@ -1,12 +1,10 @@
 <?php
 
 use App\Http\Controllers\PropertyController;
-use App\Http\Resources\CountriesResource;
 use App\Http\Resources\UserResource;
 use Igaster\LaravelCities\GeoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Geo;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +42,13 @@ Route::group(['prefix' => 'geo'], function() {
 /**
  * Property Routing
  */
-Route::get('properties', [PropertyController::class, 'index']);
+Route::group(['prefix' => 'property', 'middleware' => 'throttle:api'], function() {
+    Route::get('search', [PropertyController::class, 'search'])->name('property.search');
+    Route::get('/', [PropertyController::class, 'index'])->name('property.list');
+    Route::get('show/{property}', [PropertyController::class, 'show'])->name('property.show');
+    Route::post('update/{property}', [PropertyController::class, 'update'])->name('property.update');
+    Route::post('store/{property}', [PropertyController::class, 'store'])->name('property.store');
+    Route::post('destroy/{property}', [PropertyController::class, 'destroy'])->name('property.destroy');
+    Route::post('edit/{property}', [PropertyController::class, 'edit'])->name('property.edit');
+    Route::post('create/{property}', [PropertyController::class, 'create'])->name('property.create');
+});

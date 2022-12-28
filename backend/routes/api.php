@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\PropertyController;
 use App\Http\Resources\CountriesResource;
 use App\Http\Resources\UserResource;
+use Igaster\LaravelCities\GeoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Geo;
@@ -25,30 +27,21 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     //..
 });
 
-
-Route::get('countries', function () {
-    return CountriesResource::collection(Geo::countries()->get());
-});
-Route::get('{country}', function ($country) {
-    $country = Geo::countries()->where('name', Str::ucfirst($country))->first();
-
-    if (blank($country)) {
-        abort(404);
-    }
-
-    return new CountriesResource($country);
-})->where('name', '[A-Za-z]+');
-
-\Igaster\LaravelCities\Geo::ApiRoutes();
-
+/**
+ * Geo Routing
+ */
 Route::group(['prefix' => 'geo'], function() {
-    Route::get('search/{name}/{parent_id?}',[\Igaster\LaravelCities\Geo::class, 'search']);
-    Route::get('item/{id}',[\Igaster\LaravelCities\Geo::class, 'getItem']);
-    Route::get('children/{id}',[\Igaster\LaravelCities\Geo::class, 'getChildren']);
-    Route::get('parent/{id}',[\Igaster\LaravelCities\Geo::class, 'getParent']);
-    Route::get('country/{code}',[\Igaster\LaravelCities\Geo::class, 'country']);
-    Route::get('countries',[\Igaster\LaravelCities\Geo::class, 'getCountries']);
-    Route::get('ancestors/{id}',[\Igaster\LaravelCities\Geo::class, 'getAncensors']);
-    Route::get('breadcrumbs/{id}',[\Igaster\LaravelCities\Geo::class, 'breadcrumbs']);
+    Route::get('search/{name}/{parent_id?}',[GeoController::class, 'search']);
+    Route::get('item/{id}',[GeoController::class, 'item']);
+    Route::get('children/{id}',[GeoController::class, 'children']);
+    Route::get('parent/{id}',[GeoController::class, 'parent']);
+    Route::get('country/{code}',[GeoController::class, 'country']);
+    Route::get('countries',[GeoController::class, 'countries']);
+    Route::get('ancestors/{id}',[GeoController::class, 'ancestors']);
+    Route::get('breadcrumbs/{id}',[GeoController::class, 'breadcrumbs']);
 });
 
+/**
+ * Property Routing
+ */
+Route::get('properties', [PropertyController::class, 'index']);

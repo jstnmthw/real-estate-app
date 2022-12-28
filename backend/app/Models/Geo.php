@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Scout\Searchable;
 
-/**
- * @method static Builder provinces
- * @method static Builder countries
- */
 class Geo extends Model
 {
     use HasFactory,
@@ -102,11 +99,11 @@ class Geo extends Model
      * Scope a query to only include popular users.
      *
      * @param Builder $query
-     * @return Builder
+     * @return array|Collection
      */
-    public function scopeCountries(Builder $query): Builder
+    public function scopeCountries(Builder $query): array|Collection
     {
-        return $query->where('level', '=', Geo::COUNTRY);
+        return $query->where('level', '=', Geo::COUNTRY)->get();
     }
 
     /**

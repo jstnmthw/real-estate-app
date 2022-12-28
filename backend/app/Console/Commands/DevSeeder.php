@@ -41,15 +41,15 @@ class DevSeeder extends Command
         $this->truncateAll();
 
         $this->info('1/9 - Creating Agents & Users...');
-        $this->createUsers( 10000);
+        $this->createUsers( 1000000);
         $this->info('');
 
         $this->info('2/9 - Creating Projects...');
-        $this->createProjects(5000);
+        $this->createProjects(500000);
         $this->info('');
 
         $this->info('3/9 - Creating Properties...');
-        $this->createProperties(20000);
+        $this->createProperties(2000000);
         $this->info('');
 
         $this->info('4/9 - Assigning role user to all users...');
@@ -59,7 +59,7 @@ class DevSeeder extends Command
         $this->info('');
 
         $this->info('5/9 - Assigning role agent to some users...');
-        $agents = User::query()->where('id', '<=', 5000);
+        $agents = User::query()->where('id', '<=', 500000);
         $agentRole = Role::findByName('agent');
         $this->assignRoleToUsers($agents, $agentRole);
 
@@ -69,7 +69,7 @@ class DevSeeder extends Command
         $this->info('');
 
         $this->info('7/9 - Creating contacts...');
-        $this->createUsers( 5000);
+        $this->createUsers( 500000);
         $this->info('');
 
         $this->info('8/9 - Assigning role contact...');
@@ -167,50 +167,56 @@ class DevSeeder extends Command
         $bar = $this->output->createProgressBar($count);
         $bar->start();
 
-        $areaTypes = Property::$areaTypes;
-        $propertyTypes = PropertyType::all();
-        $userCount = User::count();
-        $projectCount = Project::count();
-        $countryId = 1605651;
+        $areaTypes          = Property::$areaTypes;
+        $propertyTypes      = PropertyType::all();
+        $userCount          = User::count();
+        $projectCount       = Project::count();
+        $countryId          = 1605651;
+        $provinces          = Geo::provinces($countryId)
+                                ->limit(10)
+                                ->orderBy('population', 'desc')
+                                ->get();
 
         $chunk = $count / 1000;
         for ($j = 1; $j <= $chunk; $j++) {
+
             $propertyData = array();
-            $provinces = Geo::provinces($countryId)->pluck('id');
-            $districts = Geo::districts($provinces->random())->pluck('id');
+            $districts = Geo::districts()->select(['id', 'parent_id', 'name'])
+                ->where('parent_id', $provinces->random()->getKey())->get();
+
             for ($i = 1; $i <= 1000; $i++) {
 
-                $propertyType = $propertyTypes->random();
-                $bedrooms = fake()->numberBetween(0,5);
-                $bathrooms = fake()->numberBetween(0,5);
-                $areaType = $areaTypes[fake()->numberBetween(0, (count($areaTypes) - 1))];
-                $areaSize = fake()->numberBetween(32, 4000);
-                $provinceId = $provinces->random();
-                $districtId = $districts->random();
+                $propertyType   = $propertyTypes->random();
+                $bedrooms       = fake()->numberBetween(0,5);
+                $bathrooms      = fake()->numberBetween(0,5);
+                $areaType       = $areaTypes[fake()->numberBetween(0, (count($areaTypes) - 1))];
+                $areaSize       = fake()->numberBetween(32, 4000);
+                $provinceId     = $provinces->random()->getKey();
+                $districtId     = $districts->random()->getKey();
 
                 $propertyData[] = [
-                    'title' => fake()->streetName(),
-                    'description' => fake()->sentences(3, true),
-                    'for_sale' => fake()->boolean(),
-                    'for_rent' => fake()->boolean(),
-                    'sales_price' => fake()->numberBetween(100000,99999999),
-                    'rental_price' => fake()->numberBetween(5000,10000),
-                    'bedrooms' => $bedrooms,
-                    'bathrooms' => $bathrooms,
-                    'latitude' => fake()->latitude(),
-                    'longitude' => fake()->longitude(),
-                    'area_type' => $areaType,
-                    'area_size' => $areaSize,
-                    'plot_size' => fake()->numberBetween(32, 4000),
-                    'property_type_id' => $propertyType->getKey(),
-                    'project_id' => fake()->unique(true)->numberBetween([1, $projectCount]),
-                    'country_id' => $countryId,
-                    'province_id' => $provinceId,
-                    'district_id' => $districtId,
-                    'created_by' => fake()->unique(true)->numberBetween([1, $userCount]),
-                    'updated_by' => fake()->unique(true)->numberBetween([1, $userCount]),
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'title'             => fake()->streetName(),
+                    'description'       => fake()->sentences(3, true),
+                    'for_sale'          => fake()->boolean(),
+                    'for_rent'          => fake()->boolean(),
+                    'sales_price'       => fake()->numberBetween(100000,99999999),
+                    'rental_price'      => fake()->numberBetween(5000,10000),
+                    'bedrooms'          => $bedrooms,
+                    'bathrooms'         => $bathrooms,
+                    'latitude'          => fake()->latitude(),
+                    'longitude'         => fake()->longitude(),
+                    'area_type'         => $areaType,
+                    'area_size'         => $areaSize,
+                    'plot_size'         => fake()->numberBetween(32, 4000),
+                    'property_type_id'  => $propertyType->getKey(),
+                    'project_id'        => fake()->unique(true)->numberBetween(1, $projectCount),
+                    'country_id'        => $countryId,
+                    'province_id'       => $provinceId,
+                    'district_id'       => $districtId,
+                    'created_by'        => fake()->unique(true)->numberBetween(1, $userCount),
+                    'updated_by'        => fake()->unique(true)->numberBetween(1, $userCount),
+                    'created_at'        => now(),
+                    'updated_at'        => now(),
                 ];
             }
             Property::query()->insert($propertyData);

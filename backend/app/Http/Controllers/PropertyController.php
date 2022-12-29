@@ -27,22 +27,24 @@ class PropertyController extends Controller
     /**
      * Search within meilisearch
      *
-     * @return LengthAwarePaginator
+     * @return AnonymousResourceCollection
      */
     public function search(Request $request)
     {
-        return Property::search(
-            query: trim($request->get('q', '')),
-            callback: function (Indexes $meilisearch, string $query, array $options) use ($request) {
-                if ($request->has('bedrooms')) {
-                    $options['filter'] = "bedrooms = {$request->get('bedrooms')}";
-                }
-                return $meilisearch->search(
-                    query: $query,
-                    options: $options,
-                );
-            },
-        )->paginate();
+        return PropertyResource::collection(
+            Property::search(
+                trim($request->get('q', '')),
+                function (Indexes $meilisearch, string $query, array $options) use ($request) {
+                    if ($request->has('bedrooms')) {
+                        $options['filter'] = "bedrooms = {$request->get('bedrooms')}";
+                    }
+                    return $meilisearch->search(
+                        $query,
+                        $options,
+                    );
+                },
+            )->paginate()
+        );
     }
 
     /**

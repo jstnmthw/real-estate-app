@@ -43,7 +43,7 @@ class PropertyController extends Controller
                         $options,
                     );
                 },
-            )->paginate()
+            )->paginate()->withQueryString()
         );
     }
 

@@ -62,7 +62,6 @@ class Property extends Model
             'rental_price' => $this->rental_price,
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
-            'area_type' => $this->area_type,
             'area_size' => $this->area_size,
             'plot_size' => $this->plot_size,
             'latitude' => $this->latitude,

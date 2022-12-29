@@ -138,8 +138,6 @@ return [
             Property::class => [
                 'filterableAttributes'=> [
                     'id',
-                    'title',
-                    'description',
                     'for_sale',
                     'for_rent',
                     'sales_price',
@@ -148,9 +146,11 @@ return [
                     'bathrooms',
                     'latitude',
                     'longitude',
-                    'area_type',
                     'area_size',
                     'plot_size',
+                    'country_id',
+                    'province_id',
+                    'district_id',
                     'property_type_id',
                     'project_id',
                     'created_by',

@@ -1,144 +1,130 @@
 'use client';
 
 import Link from 'next/link';
+import { Dialog } from '@headlessui/react';
+import React, { useState } from 'react';
+import UserMenu from '@/app/dashboard/UserMenu';
 import PrimaryButton from '@/components/ui/buttons/PrimaryButton';
-import MobileMenu from '@/components/MobileMenu';
 import { Logo } from '@/components/icons/Logo';
 import { Bars3Icon } from '@heroicons/react/20/solid';
-import { useState } from 'react';
 import { useAuth } from '@/hooks/auth';
-import Image from 'next/image';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+
 const Header = () => {
   const { user } = useAuth({ middleware: 'guest' });
   let [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigation = [
+    { name: 'Buy', href: '/buy' },
+    { name: 'Rent', href: '/rent' },
+    { name: 'Sell', href: '/sell' },
+  ];
+
   function handleCloseMobileMenu() {
     setMobileMenuOpen(false);
   }
   return (
-    <div className="container">
-      <div className="flex justify-center pt-6 md:justify-between">
-        <div className="flex items-center">
-          <Link
-            href={'/'}
-            className="mt-6 inline-block text-black md:mt-0 md:mr-4"
-          >
-            <h1>
-              <Logo className="h-20 w-20 md:h-12 md:w-12" />
-            </h1>
+    <>
+      <nav
+        className="flex h-7 items-center justify-between"
+        aria-label="Global"
+      >
+        <div className="flex md:min-w-0 md:flex-1" aria-label="Global">
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">RealEstate</span>
+            <Logo className="h-8 w-8 text-blue-600" />
           </Link>
-          <nav className="ml-4 hidden md:block">
-            <ul className="tracking-loose flex gap-6">
-              <li>
-                <Link
-                  href={'/'}
-                  className="block py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  Docs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={'/'}
-                  className="block py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  APIs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={'/'}
-                  className="block py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={'/'}
-                  className="block py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </nav>
         </div>
-        {!user ? (
-          <div className="ml-4 hidden items-center gap-4 md:flex">
-            <Link href={'signin'} className={'font-medium'}>
-              Sign in
-            </Link>
-            <PrimaryButton>Get started</PrimaryButton>
-          </div>
-        ) : (
-          <div className="ml-4 hidden items-center gap-4 md:flex">
+        <div className="flex md:hidden">
+          <button
+            type="button"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-500"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <Bars3Icon className="h-8 w-8" aria-hidden="true" />
+          </button>
+        </div>
+        <div className="hidden md:flex md:min-w-0 md:flex-1 md:justify-center md:gap-x-12">
+          {navigation.map((item) => (
             <Link
-              href={'/dashboard'}
-              className={'rounded-full font-semibold hover:text-blue-600'}
+              key={item.name}
+              href={item.href}
+              className="font-medium text-gray-900 hover:text-gray-900"
             >
-              <Image
-                src={user.avatar}
-                alt={user.name ?? 'Avatar'}
-                width={24}
-                height={24}
-                className={'block h-6 w-6 rounded-full'}
-              />
-              {user.name}
+              {item.name}
             </Link>
+          ))}
+        </div>
+        <div className="hidden items-center space-x-5 md:flex md:min-w-0 md:flex-1 md:justify-end">
+          {user ? (
+            <UserMenu />
+          ) : (
+            <>
+              <Link
+                href={'/signin'}
+                className="text-sm font-medium text-neutral-600"
+              >
+                Login
+              </Link>
+              <Link href={'/register'} className="font-medium">
+                <PrimaryButton
+                  size="md"
+                  className="shadow-lg shadow-blue-300 transition-shadow hover:shadow-md hover:shadow-blue-300"
+                >
+                  Sign up
+                </PrimaryButton>
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+      <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto bg-white p-5 md:hidden">
+          <div className="flex h-9 items-center justify-between">
+            <div className="flex">
+              <Link href="/" className="-m-1.5 p-1.5">
+                <span className="sr-only">RealEstate</span>
+                <Logo className={'h-8 w-8'} />
+              </Link>
+            </div>
+            <div className="flex">
+              <button
+                type="button"
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-600"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="sr-only">Close menu</span>
+                <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+              </button>
+            </div>
           </div>
-        )}
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            setMobileMenuOpen(true);
-          }}
-          className="absolute top-5 right-5 block rounded-lg border border-neutral-300 p-1.5 text-neutral-900 shadow-md transition-all hover:border-neutral-500 hover:shadow-lg focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 md:hidden"
-        >
-          <Bars3Icon className="h-5 w-5" />
-        </button>
-        <MobileMenu
-          handleClose={handleCloseMobileMenu}
-          isOpen={mobileMenuOpen}
-          body={
-            <ul className="tracking-loose w-full rounded-lg bg-white py-2">
-              <li>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="py-6">
                 <Link
-                  href={'/'}
-                  className="block px-4 py-1.5 font-medium transition-colors hover:text-blue-600"
+                  href={'/signin'}
+                  className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                 >
-                  Docs
+                  Log in
                 </Link>
-              </li>
-              <li>
-                <Link
-                  href={'/'}
-                  className="block px-4 py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  APIs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={'/'}
-                  className="block px-4 py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={'/'}
-                  className="block px-4 py-1.5 font-medium transition-colors hover:text-blue-600"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          }
-        />
-      </div>
-    </div>
+              </div>
+            </div>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+    </>
   );
 };
 export default Header;

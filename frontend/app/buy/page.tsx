@@ -1,10 +1,15 @@
 import Header from '@/components/Header';
 import React from 'react';
 import Image from 'next/image';
-import { useProperty } from '@/hooks/property';
 
-export default function Page() {
-  const property = useProperty();
+async function getData() {
+  await fetch('http://localhost/sanctum/csrf-cookie');
+  return await fetch('http://localhost/api/property/search');
+  // return res.json();
+}
+
+export default async function Page() {
+  const data = await getData();
   return (
     <>
       <div className="bg-white p-5 shadow md:p-6">
@@ -20,12 +25,12 @@ export default function Page() {
               alt={''}
               className="mr-7 max-w-full rounded-xl"
             />
-            <h2 className="font-semibold tracking-tight">
+            <h2 className="text-lg font-medium tracking-tight">
               2 bedrooms 3 bathroom condo for sale in Phuket
             </h2>
           </div>
         </div>
-        <div className="col-span-1">Map</div>
+        <div className="col-span-1"></div>
       </div>
     </>
   );

@@ -17,6 +17,7 @@
     "axios": "^1.2.1",
     "next": "^13.0.8-canary.1",
     "react": "18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "swr": "^2.0.0"
   },

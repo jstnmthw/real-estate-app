@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserSocialLogin;
-use Exception;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
+use Auth;
+use Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Laravel\Socialite\Two\User as SocialUser;
 
@@ -25,7 +24,10 @@ class UserSocialLoginController extends Controller
 
         Auth::login($user, true);
 
-        return redirect(config('app.frontend_url'));
+        return redirect(config('app.frontend_url'))
+            ->cookie(
+            'Authenticated', 'true', now()->addDay()->toCookieString(), null, null, false, false
+            );
     }
 
     /**

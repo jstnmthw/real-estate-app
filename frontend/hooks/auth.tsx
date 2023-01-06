@@ -1,9 +1,16 @@
 import useSWR from 'swr';
 import axios from '@/lib/axios';
-import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { User as UserProps } from '@/types/user';
+import { useCookies } from 'react-cookie';
 
 export type SetErrorsProps = Dispatch<SetStateAction<never[]>>;
 export type SetStatusProps = Dispatch<SetStateAction<null>>;
@@ -15,6 +22,8 @@ export const useAuth = ({
   middleware?: string;
   redirectIfAuthenticated?: string;
 } = {}) => {
+  const [cookies, setCookies, removeCookies] = useCookies();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -22,18 +31,28 @@ export const useAuth = ({
     data: user,
     error,
     mutate,
-  } = useSWR<UserProps, string>('/api/user', () =>
+  } = useSWR<UserProps, string>(tryUser() ? '/api/user' : null, () =>
     axios
       .get('/api/user')
-      .then((res) => res.data.data)
+      .then((res) => {
+        setCookies('Authenticated', true, { sameSite: 'lax' });
+        return res.data.data;
+      })
       .catch((error) => {
-        if (error.response.status !== 409) throw error;
-
+        console.log('Now should remove');
+        removeCookies('Authenticated');
+        if (error.response.status !== 409) {
+          setCookies('Authenticated', false, { sameSite: 'lax' });
+          throw error;
+        }
         router.push('/verify-email');
       }),
   );
 
-  const csrf = () => axios.get('/sanctum/csrf-cookie');
+  const csrf = () =>
+    axios.get('/sanctum/csrf-cookie').catch(() => {
+      setLoading(false);
+    });
 
   const register = async ({
     setErrors,
@@ -41,18 +60,23 @@ export const useAuth = ({
   }: {
     setErrors: SetErrorsProps;
   }) => {
+    setLoading(true);
     await csrf();
 
     setErrors([]);
 
     axios
       .post('/register', props)
-      .then(() => mutate())
+      .then(() => {
+        mutate();
+      })
       .catch((error) => {
+        removeCookies('Authenticated');
         if (error.response.status !== 422) throw error;
 
         setErrors(error.response.data.errors);
       });
+    setLoading(false);
   };
 
   const login = async ({
@@ -66,6 +90,7 @@ export const useAuth = ({
     email: string;
     remember: boolean;
   }) => {
+    setLoading(true);
     await csrf();
 
     setErrors([]);
@@ -73,10 +98,15 @@ export const useAuth = ({
 
     axios
       .post('/login', props)
-      .then(() => mutate())
+      .then(() => {
+        setCookies('Authenticated', true, { sameSite: 'lax', path: '/' });
+        mutate();
+      })
       .catch((error) => {
+        removeCookies('Authenticated');
         if (error.response.status !== 422) throw error;
 
+        setLoading(false);
         setErrors(error.response.data.errors);
       });
   };
@@ -113,6 +143,7 @@ export const useAuth = ({
     setErrors: SetErrorsProps;
     setStatus: SetStatusProps;
   }) => {
+    setLoading(true);
     await csrf();
 
     setErrors([]);
@@ -121,7 +152,6 @@ export const useAuth = ({
     axios
       .post('/reset-password', { token: searchParams.get('token'), ...props })
       .then((response) =>
-        // router.push('/login?reset=' + btoa(response.data.status)),
         router.push('/login?rest=' + response.data.status.toString('base64')),
       )
       .catch((error) => {
@@ -129,6 +159,7 @@ export const useAuth = ({
 
         setErrors(error.response.data.errors);
       });
+    setLoading(false);
   };
 
   const resendEmailVerification = ({
@@ -143,11 +174,14 @@ export const useAuth = ({
 
   const logout = useCallback(async () => {
     if (!error) {
-      await axios.post('/logout').then(() => mutate());
+      await axios.post('/logout').then(() => {
+        setCookies('Authenticated', false, { sameSite: 'lax', path: '/' });
+        mutate();
+      });
     }
 
     window.location.pathname = '/signin';
-  }, [error, mutate]);
+  }, [error, mutate, removeCookies]);
 
   useEffect(() => {
     if (middleware === 'guest' && redirectIfAuthenticated && user)
@@ -161,6 +195,13 @@ export const useAuth = ({
     if (middleware === 'auth' && error) logout();
   }, [user, error, middleware, redirectIfAuthenticated, router, logout]);
 
+  function tryUser() {
+    if (middleware === 'auth' || cookies.Authenticated !== 'false') {
+      return true;
+    }
+    return null;
+  }
+
   return {
     user,
     register,
@@ -169,5 +210,6 @@ export const useAuth = ({
     resetPassword,
     resendEmailVerification,
     logout,
+    loading,
   };
 };

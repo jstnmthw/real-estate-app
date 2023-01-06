@@ -5,9 +5,9 @@ import { Dialog } from '@headlessui/react';
 import React, { useState } from 'react';
 import UserMenu from '@/app/dashboard/UserMenu';
 import PrimaryButton from '@/components/ui/buttons/PrimaryButton';
+import { useAuth } from '@/hooks/auth';
 import { Logo } from '@/components/icons/Logo';
 import { Bars3Icon } from '@heroicons/react/20/solid';
-import { useAuth } from '@/hooks/auth';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const Header = () => {
@@ -25,10 +25,12 @@ const Header = () => {
   }
   return (
     <>
-      <nav
-        className="flex h-7 items-center justify-between"
-        aria-label="Global"
-      >
+      <div className="bg-slate-900 py-1 font-medium text-white">
+        <div className="mx-auto flex max-w-md text-sm sm:max-w-3xl lg:max-w-7xl">
+          USD
+        </div>
+      </div>
+      <nav className="mx-auto flex max-w-md py-6 px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="flex md:min-w-0 md:flex-1" aria-label="Global">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">RealEstate</span>

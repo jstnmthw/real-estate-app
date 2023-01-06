@@ -9,9 +9,7 @@ import Header from '@/components/Header';
 export default function Page() {
   return (
     <div className="isolate">
-      <div className="bg-white p-5 shadow md:p-8">
-        <Header />
-      </div>
+      <Header />
       <main className="relative overflow-hidden">
         <Hero />
         <Stats />

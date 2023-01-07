@@ -80,17 +80,32 @@ const recentPosts = [
 export default function Header() {
   return (
     <Popover className="relative bg-white md:bg-transparent">
-      <div className="hidden bg-lavender-1000 py-2.5 text-sm text-lavender-50 md:block">
+      <div className="hidden bg-lavender-1000 py-2.5 text-sm md:block">
         <div className="container flex justify-between">
-          <div>
+          <div className="text-lavender-50">
             <MegaphoneIcon className="mr-2 inline-block h-5 w-5 text-lavender-400" />
             Special announcements can go here too
           </div>
-          <div>
-            <Link
-              href={'signin'}
-              className="whitespace-nowrap text-sm font-medium text-lavender-50 transition-colors hover:text-lavender-200"
-            >
+          <div className="flex space-x-5">
+            <button type="button" className="font-medium text-zinc-400">
+              <span>English</span>
+              <ChevronDownIcon
+                className={
+                  'ml-0.5 inline-block h-5 w-5 group-hover:text-gray-500'
+                }
+                aria-hidden="true"
+              />
+            </button>
+            <button type="button" className="font-medium text-zinc-400">
+              <span>USD</span>
+              <ChevronDownIcon
+                className={
+                  'ml-0.5 inline-block h-5 w-5 group-hover:text-gray-500'
+                }
+                aria-hidden="true"
+              />
+            </button>
+            <Link href={'signin'} className="font-medium text-zinc-200">
               Sign in
             </Link>
           </div>
@@ -115,7 +130,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
+                className="text-base font-medium text-lavender-900 hover:text-gray-900"
               >
                 {item.name}
               </Link>
@@ -125,14 +140,14 @@ export default function Header() {
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? 'text-gray-900' : 'text-gray-500',
+                      open ? 'text-gray-900' : 'text-lavender-900',
                       'group inline-flex items-center rounded-md text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2',
                     )}
                   >
                     <span>More</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
+                        open ? 'text-lavender-700' : 'text-lavender-500',
                         'ml-2 h-5 w-5 group-hover:text-gray-500',
                       )}
                       aria-hidden="true"
@@ -212,7 +227,7 @@ export default function Header() {
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <Link
               href={'register'}
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-lavender-600 drop-shadow hover:bg-lavender-50"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-lavender-600 drop-shadow hover:text-lavender-800"
             >
               Sign up
             </Link>

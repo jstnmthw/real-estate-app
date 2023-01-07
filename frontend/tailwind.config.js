@@ -37,6 +37,7 @@ module.exports = {
       },
       backgroundImage: {
         main: "url('/img/main-bg.jpg')",
+        main_dark: "url('/img/main-bg_dark.jpg')",
       },
       container: {
         center: true,

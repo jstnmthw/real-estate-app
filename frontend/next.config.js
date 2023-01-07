@@ -4,7 +4,6 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
-    allowMiddlewareResponseBody: true,
   },
   images: {
     remotePatterns: [
@@ -31,7 +30,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'tailwindui.com',
-        pathname: '/img/logos/**',
+        pathname: '/img/**',
       },
     ],
   },

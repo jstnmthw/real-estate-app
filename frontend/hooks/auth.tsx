@@ -22,7 +22,7 @@ export const useAuth = ({
   middleware?: string;
   redirectIfAuthenticated?: string;
 } = {}) => {
-  const [cookies, setCookies, removeCookies] = useCookies();
+  const [cookies, setCookies] = useCookies();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -40,9 +40,8 @@ export const useAuth = ({
       })
       .catch((error) => {
         console.log('Now should remove');
-        removeCookies('Authenticated');
+        setCookies('Authenticated', false, { sameSite: 'lax', path: '/' });
         if (error.response.status !== 409) {
-          setCookies('Authenticated', false, { sameSite: 'lax' });
           throw error;
         }
         router.push('/verify-email');
@@ -71,7 +70,7 @@ export const useAuth = ({
         mutate();
       })
       .catch((error) => {
-        removeCookies('Authenticated');
+        setCookies('Authenticated', false, { sameSite: 'lax', path: '/' });
         if (error.response.status !== 422) throw error;
 
         setErrors(error.response.data.errors);
@@ -98,12 +97,9 @@ export const useAuth = ({
 
     axios
       .post('/login', props)
-      .then(() => {
-        setCookies('Authenticated', true, { sameSite: 'lax', path: '/' });
-        mutate();
-      })
+      .then(() => mutate())
       .catch((error) => {
-        removeCookies('Authenticated');
+        setCookies('Authenticated', false, { sameSite: 'lax', path: '/' });
         if (error.response.status !== 422) throw error;
 
         setLoading(false);
@@ -181,7 +177,7 @@ export const useAuth = ({
     }
 
     window.location.pathname = '/signin';
-  }, [error, mutate, removeCookies]);
+  }, [error, mutate, setCookies]);
 
   useEffect(() => {
     if (middleware === 'guest' && redirectIfAuthenticated && user)

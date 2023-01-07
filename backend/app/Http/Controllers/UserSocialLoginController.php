@@ -26,7 +26,7 @@ class UserSocialLoginController extends Controller
 
         return redirect(config('app.frontend_url'))
             ->cookie(
-            'Authenticated', 'true', now()->addDay()->toCookieString(), null, null, false, false
+            'Authenticated', 'true', 5600, null, null, false, false
             );
     }
 

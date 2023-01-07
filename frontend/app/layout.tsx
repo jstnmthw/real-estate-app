@@ -10,7 +10,7 @@ const inter = Inter({
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className}>
-      <body>{children}</body>
+      <body className="relative">{children}</body>
     </html>
   );
 }

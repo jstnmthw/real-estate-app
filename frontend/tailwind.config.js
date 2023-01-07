@@ -10,16 +10,17 @@ module.exports = {
     extend: {
       colors: {
         lavender: {
-          50: '#edf2ff',
+          50: '#f4f4fa',
           100: '#dee8ff',
           200: '#c3d4ff',
           300: '#9fb7ff',
           400: '#798eff',
           500: '#5f6dfb',
-          600: '#3b3df0',
-          700: '#2f2ed4',
-          800: '#2829ab',
-          900: '#282b87',
+          600: '#5d5fee',
+          700: '#5b5bd3',
+          800: '#4849ab',
+          900: '#37386e',
+          1000: '#161723',
         },
       },
       fontFamily: {
@@ -33,6 +34,9 @@ module.exports = {
           '0 35px 35px rgba(0, 0, 0, 0.25)',
           '0 45px 65px rgba(0, 0, 0, 0.15)',
         ],
+      },
+      backgroundImage: {
+        main: "url('/img/main-bg.jpg')",
       },
       container: {
         center: true,

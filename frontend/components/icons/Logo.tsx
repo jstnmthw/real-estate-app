@@ -9,7 +9,7 @@ export const Logo: FC<{ className?: string }> = ({ className }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={classNames(
-        className ? className : 'h-8 w-auto text-lavender-500 md:h-10',
+        className ? className : 'h-8 w-auto text-lavender-600 md:h-10',
       )}
     >
       <path

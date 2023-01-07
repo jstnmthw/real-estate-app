@@ -17,7 +17,7 @@ import { classNames } from '@/helpers/utilites';
 import { Logo } from '@/components/icons/Logo';
 import Link from 'next/link';
 
-const mobileMenu = [
+const menu = [
   {
     name: 'Buy',
     description:
@@ -79,28 +79,30 @@ const recentPosts = [
 
 export default function Header() {
   return (
-    <Popover className="relative">
-      <div className="hidden bg-zinc-900 py-2.5 text-sm text-zinc-300 md:block">
+    <Popover className="relative bg-white md:bg-transparent">
+      <div className="hidden bg-lavender-1000 py-2.5 text-sm text-lavender-50 md:block">
         <div className="container flex justify-between">
           <div>
-            <MegaphoneIcon className="mr-2 inline-block h-5 w-5 text-zinc-500" />
+            <MegaphoneIcon className="mr-2 inline-block h-5 w-5 text-lavender-400" />
             Special announcements can go here too
           </div>
-          <Link
-            href={'signin'}
-            className="whitespace-nowrap text-sm font-medium text-zinc-200 hover:text-zinc-400"
-          >
-            Sign in
-          </Link>
+          <div>
+            <Link
+              href={'signin'}
+              className="whitespace-nowrap text-sm font-medium text-lavender-50 transition-colors hover:text-lavender-200"
+            >
+              Sign in
+            </Link>
+          </div>
         </div>
       </div>
       <div className="container">
-        <div className="flex items-center justify-between border-b border-gray-100 py-6 md:justify-start md:space-x-10 md:border-0">
+        <div className="flex items-center justify-between border-b border-gray-100 py-4 md:justify-start md:space-x-10 md:border-0 md:py-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <Link href={'/'}>
               <span className="sr-only">Real Estate</span>
               <Logo />
-            </a>
+            </Link>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lavender-500">
@@ -109,31 +111,22 @@ export default function Header() {
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Buy
-            </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Rent
-            </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sell
-            </a>
+            {menu.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+                {item.name}
+              </Link>
+            ))}
             <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
                     className={classNames(
                       open ? 'text-gray-900' : 'text-gray-500',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2',
+                      'group inline-flex items-center rounded-md text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2',
                     )}
                   >
                     <span>More</span>
@@ -219,13 +212,14 @@ export default function Header() {
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <Link
               href={'register'}
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-lavender-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-lavender-700"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-lavender-600 drop-shadow hover:bg-lavender-50"
             >
               Sign up
             </Link>
           </div>
         </div>
       </div>
+      {/* Mobile Menu */}
       <Transition
         as={Fragment}
         enter="duration-200 ease-out"
@@ -252,8 +246,8 @@ export default function Header() {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {mobileMenu.map((item) => (
-                    <a
+                  {menu.map((item) => (
+                    <Link
                       key={item.name}
                       href={item.href}
                       className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
@@ -265,7 +259,7 @@ export default function Header() {
                       <span className="ml-3 text-base font-medium text-gray-900">
                         {item.name}
                       </span>
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </div>

@@ -1,132 +1,308 @@
-'use client';
-
-import Link from 'next/link';
-import { Dialog } from '@headlessui/react';
-import React, { useState } from 'react';
-import UserMenu from '@/app/dashboard/UserMenu';
-import PrimaryButton from '@/components/ui/buttons/PrimaryButton';
-import { useAuth } from '@/hooks/auth';
+import { Fragment } from 'react';
+import { Popover, Transition } from '@headlessui/react';
+import {
+  Bars3Icon,
+  BookmarkSquareIcon,
+  BuildingOfficeIcon,
+  CalendarIcon,
+  HomeModernIcon,
+  KeyIcon,
+  LifebuoyIcon,
+  MegaphoneIcon,
+  ShieldCheckIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { classNames } from '@/helpers/utilites';
 import { Logo } from '@/components/icons/Logo';
-import { Bars3Icon } from '@heroicons/react/20/solid';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
-const Header = () => {
-  const { user } = useAuth({ middleware: 'guest' });
-  let [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const mobileMenu = [
+  {
+    name: 'Buy',
+    description:
+      'Get a better understanding of where your traffic is coming from.',
+    href: '#',
+    icon: HomeModernIcon,
+  },
+  {
+    name: 'Rent',
+    description: 'Speak directly to your customers in a more meaningful way.',
+    href: '#',
+    icon: BuildingOfficeIcon,
+  },
+  {
+    name: 'Sell',
+    description: "Your customers' data will be safe and secure.",
+    href: '#',
+    icon: KeyIcon,
+  },
+];
+const resources = [
+  {
+    name: 'Help Center',
+    description:
+      'Get all of your questions answered in our forums or contact support.',
+    href: '#',
+    icon: LifebuoyIcon,
+  },
+  {
+    name: 'Guides',
+    description:
+      'Learn how to maximize our platform to get the most out of it.',
+    href: '#',
+    icon: BookmarkSquareIcon,
+  },
+  {
+    name: 'Events',
+    description:
+      'See what meet-ups and other events we might be planning near you.',
+    href: '#',
+    icon: CalendarIcon,
+  },
+  {
+    name: 'Security',
+    description: 'Understand how we take your privacy seriously.',
+    href: '#',
+    icon: ShieldCheckIcon,
+  },
+];
+const recentPosts = [
+  { id: 1, name: 'Boost your conversion rate', href: '#' },
+  {
+    id: 2,
+    name: 'How to use search engine optimization to drive traffic to your site',
+    href: '#',
+  },
+  { id: 3, name: 'Improve your customer experience', href: '#' },
+];
 
-  const navigation = [
-    { name: 'Buy', href: '/buy' },
-    { name: 'Rent', href: '/rent' },
-    { name: 'Sell', href: '/sell' },
-  ];
-
-  function handleCloseMobileMenu() {
-    setMobileMenuOpen(false);
-  }
+export default function Header() {
   return (
-    <>
-      <div className="bg-slate-900 py-1 font-medium text-white">
-        <div className="mx-auto flex max-w-md text-sm sm:max-w-3xl lg:max-w-7xl">
-          USD
-        </div>
-      </div>
-      <nav className="mx-auto flex max-w-md py-6 px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="flex md:min-w-0 md:flex-1" aria-label="Global">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">RealEstate</span>
-            <Logo className="h-8 w-8 text-blue-600" />
+    <Popover className="relative">
+      <div className="hidden bg-zinc-900 py-2.5 text-sm text-zinc-300 md:block">
+        <div className="container flex justify-between">
+          <div>
+            <MegaphoneIcon className="mr-2 inline-block h-5 w-5 text-zinc-500" />
+            Special announcements can go here too
+          </div>
+          <Link
+            href={'signin'}
+            className="whitespace-nowrap text-sm font-medium text-zinc-200 hover:text-zinc-400"
+          >
+            Sign in
           </Link>
         </div>
-        <div className="flex md:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-500"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-8 w-8" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="hidden md:flex md:min-w-0 md:flex-1 md:justify-center md:gap-x-12">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="font-medium text-gray-900 hover:text-gray-900"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-        <div className="hidden items-center space-x-5 md:flex md:min-w-0 md:flex-1 md:justify-end">
-          {user ? (
-            <UserMenu />
-          ) : (
-            <>
-              <Link
-                href={'/signin'}
-                className="text-sm font-medium text-neutral-600"
-              >
-                Login
-              </Link>
-              <Link href={'/register'} className="font-medium">
-                <PrimaryButton
-                  size="md"
-                  className="shadow-lg shadow-blue-300 transition-shadow hover:shadow-md hover:shadow-blue-300"
-                >
-                  Sign up
-                </PrimaryButton>
-              </Link>
-            </>
-          )}
-        </div>
-      </nav>
-      <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto bg-white p-5 md:hidden">
-          <div className="flex h-9 items-center justify-between">
-            <div className="flex">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">RealEstate</span>
-                <Logo className={'h-8 w-8'} />
-              </Link>
-            </div>
-            <div className="flex">
-              <button
-                type="button"
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-600"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-8 w-8" aria-hidden="true" />
-              </button>
-            </div>
+      </div>
+      <div className="container">
+        <div className="flex items-center justify-between border-b border-gray-100 py-6 md:justify-start md:space-x-10 md:border-0">
+          <div className="flex justify-start lg:w-0 lg:flex-1">
+            <a href="#">
+              <span className="sr-only">Real Estate</span>
+              <Logo />
+            </a>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <Link
+          <div className="-my-2 -mr-2 md:hidden">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lavender-500">
+              <span className="sr-only">Open menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </Popover.Button>
+          </div>
+          <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+            <a
+              href="#"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              Buy
+            </a>
+            <a
+              href="#"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              Rent
+            </a>
+            <a
+              href="#"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              Sell
+            </a>
+            <Popover className="relative">
+              {({ open }) => (
+                <>
+                  <Popover.Button
+                    className={classNames(
+                      open ? 'text-gray-900' : 'text-gray-500',
+                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2',
+                    )}
+                  >
+                    <span>More</span>
+                    <ChevronDownIcon
+                      className={classNames(
+                        open ? 'text-gray-600' : 'text-gray-400',
+                        'ml-2 h-5 w-5 group-hover:text-gray-500',
+                      )}
+                      aria-hidden="true"
+                    />
+                  </Popover.Button>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-200"
+                    enterFrom="opacity-0 translate-y-1"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in duration-150"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 translate-y-1"
+                  >
+                    <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
+                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                          {resources.map((item) => (
+                            <a
+                              key={item.name}
+                              href={item.href}
+                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                            >
+                              <item.icon
+                                className="h-6 w-6 flex-shrink-0 text-lavender-600"
+                                aria-hidden="true"
+                              />
+                              <div className="ml-4">
+                                <p className="text-base font-medium text-gray-900">
+                                  {item.name}
+                                </p>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                        <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
+                          <div>
+                            <h3 className="text-base font-medium text-gray-500">
+                              Recent Posts
+                            </h3>
+                            <ul role="list" className="mt-4 space-y-4">
+                              {recentPosts.map((post) => (
+                                <li
+                                  key={post.id}
+                                  className="truncate text-base"
+                                >
+                                  <a
+                                    href={post.href}
+                                    className="font-medium text-gray-900 hover:text-gray-700"
+                                  >
+                                    {post.name}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mt-5 text-sm">
+                            <a
+                              href="#"
+                              className="font-medium text-lavender-600 hover:text-lavender-500"
+                            >
+                              View all posts
+                              <span aria-hidden="true"> &rarr;</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </Popover.Panel>
+                  </Transition>
+                </>
+              )}
+            </Popover>
+          </Popover.Group>
+          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            <Link
+              href={'register'}
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-lavender-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-lavender-700"
+            >
+              Sign up
+            </Link>
+          </div>
+        </div>
+      </div>
+      <Transition
+        as={Fragment}
+        enter="duration-200 ease-out"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="duration-100 ease-in"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+        <Popover.Panel
+          focus
+          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
+        >
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            <div className="px-5 pt-5 pb-6">
+              <div className="flex items-center justify-between">
+                <Logo />
+                <div className="-mr-2">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lavender-500">
+                    <span className="sr-only">Close menu</span>
+                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                  </Popover.Button>
+                </div>
+              </div>
+              <div className="mt-6">
+                <nav className="grid gap-y-8">
+                  {mobileMenu.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                    >
+                      <item.icon
+                        className="h-6 w-6 flex-shrink-0 text-lavender-600"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        {item.name}
+                      </span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </div>
+            <div className="space-y-6 py-6 px-5">
+              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+                {resources.map((item) => (
+                  <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                    className="text-base font-medium text-gray-900 hover:text-gray-700"
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 ))}
               </div>
-              <div className="py-6">
+              <div>
                 <Link
-                  href={'/signin'}
-                  className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
+                  href={'register'}
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-lavender-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-lavender-700"
                 >
-                  Log in
+                  Sign up
                 </Link>
+                <p className="mt-6 text-center text-base font-medium text-gray-500">
+                  Existing customer?{' '}
+                  <Link
+                    href={'signin'}
+                    className="text-lavender-600 hover:text-lavender-500"
+                  >
+                    Sign in
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
-        </Dialog.Panel>
-      </Dialog>
-    </>
+        </Popover.Panel>
+      </Transition>
+    </Popover>
   );
-};
-export default Header;
+}

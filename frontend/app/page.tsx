@@ -6,6 +6,8 @@ import { classNames } from '@/helpers/utilites';
 import { Lexend } from '@next/font/google';
 import HeroSearchBar from '@/components/HeroSearchBar';
 import Card from '@/components/Card';
+import Image from 'next/image';
+import Footer from '@/components/Footer';
 
 const lexend = Lexend({
   variable: '--font-inter',
@@ -26,8 +28,7 @@ const property = {
 
 export default function Page() {
   return (
-    <>
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-main bg-cover"></div>
+    <div className="bg-main">
       <Header />
       <main className="container">
         {/* Hero */}
@@ -46,6 +47,7 @@ export default function Page() {
           <HeroSearchBar />
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }

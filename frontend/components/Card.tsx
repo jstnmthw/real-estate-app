@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import { classNames } from '@/helpers/utilites';
-import { HeartIcon } from '@heroicons/react/24/outline';
+import { BedIcon } from '@/components/icons/BedIcon';
+import { BathIcon } from '@/components/icons/BathIcon';
+import { HeartIcon } from '@/components/icons/HeartIcon';
 
 interface PropertyProps {
   price: number;
@@ -42,22 +44,26 @@ const Card: FC<{ className?: string; property: PropertyProps }> = ({
           type="button"
         >
           <span className="sr-only">Favorite this property</span>
-          <HeartIcon className="h-5 w-5" />
+          <HeartIcon className="h-4 w-4" />
         </button>
         <span className="text-lg font-semibold text-lavender-500">
           {property?.currency}
           {property?.price.toLocaleString('en-US')}
         </span>
         <h2 className="text-lg font-semibold">{property?.title}</h2>
-        <p className="mb-4 text-sm font-medium text-zinc-600">
+        <p className="mb-4 text-sm font-medium text-zinc-500">
           {property?.address}
         </p>
-        <div className="flex space-x-10">
-          <span className="font-medium">{property.bedrooms} Bed</span>
-          <span className="font-medium">{property.bathrooms} Bath</span>
-          <span className="font-medium">
-            {property.area} {property.area_type.toUpperCase()}
-          </span>
+        <div className="flex justify-between">
+          <div className="flex items-center font-medium">
+            <BedIcon className="mr-2 h-5 w-5" /> {property.bedrooms} Bed
+          </div>
+          <div className="flex items-center font-medium">
+            <BathIcon className="mr-2 h-5 w-5" /> {property.bathrooms} Bath
+          </div>
+          <div className="flex items-center font-medium">
+            {property.area} {property.area_type}
+          </div>
         </div>
       </div>
     </div>

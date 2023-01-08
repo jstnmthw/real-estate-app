@@ -21,7 +21,7 @@ const property = {
   area_type: 'sqm',
   bedrooms: 1,
   bathrooms: 1,
-  image: '/img/properties/property5.jpg',
+  image: '/img/properties/property7.jpg',
 };
 
 export default function Page() {

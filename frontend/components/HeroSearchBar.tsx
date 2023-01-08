@@ -4,10 +4,25 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid';
 const HeroSearchBar: FC = () => {
   return (
     <>
-      <div>
-        <button type="button">Buy</button>
-        <button type="button">Rent</button>
-        <button type="button">Sell</button>
+      <div className="ml-4">
+        <button
+          type="button"
+          className="rounded-tl-xl border-b-2 border-lavender-500 px-8 py-3 font-medium"
+        >
+          Buy
+        </button>
+        <button
+          type="button"
+          className="px-8 py-3 font-medium text-gray-500 hover:text-lavender-600"
+        >
+          Rent
+        </button>
+        <button
+          type="button"
+          className="rounded-tr-xl px-8  py-3 font-medium text-gray-500 hover:text-lavender-600"
+        >
+          Sell
+        </button>
       </div>
       <div className="flex grid flex-col items-center gap-4 rounded-xl bg-white px-8 py-6 shadow-xl md:grid-cols-10 md:gap-6">
         <div className="col-span-full md:col-span-3">

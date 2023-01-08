@@ -7,11 +7,12 @@ import { useAuth } from '@/hooks/auth';
 import { useSearchParams } from 'next/navigation';
 import { FormEvent, SetStateAction, useEffect, useState } from 'react';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
+import Image from 'next/image';
 
 export default function Page() {
   const { login } = useAuth({
     middleware: 'guest',
-    // redirectIfAuthenticated: '/dashboard',
+    redirectIfAuthenticated: '/dashboard',
   });
   const searchParams = useSearchParams();
   const reset = searchParams.get('reset');
@@ -181,7 +182,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="relative hidden w-0 flex-1 bg-main_dark lg:block"></div>
+        <div className="relative hidden w-0 flex-1 lg:block">
+          <Image
+            src={'/img/properties/property6.jpg'}
+            alt={''}
+            fill
+            className="object-cover"
+          />
+        </div>
       </div>
     </>
   );

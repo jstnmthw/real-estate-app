@@ -87,20 +87,20 @@ export default function Header() {
             Special announcements can go here too
           </div>
           <div className="flex space-x-5">
-            <button type="button" className="font-medium text-zinc-400">
+            <button type="button" className="group font-medium text-zinc-200">
               <span>English</span>
               <ChevronDownIcon
                 className={
-                  'ml-0.5 inline-block h-5 w-5 group-hover:text-gray-500'
+                  'ml-0.5 inline-block h-5 w-5 text-zinc-600 group-hover:text-gray-500'
                 }
                 aria-hidden="true"
               />
             </button>
-            <button type="button" className="font-medium text-zinc-400">
+            <button type="button" className="font-medium text-zinc-200">
               <span>USD</span>
               <ChevronDownIcon
                 className={
-                  'ml-0.5 inline-block h-5 w-5 group-hover:text-gray-500'
+                  'ml-0.5 inline-block h-5 w-5 text-zinc-600 group-hover:text-gray-500'
                 }
                 aria-hidden="true"
               />

@@ -96,7 +96,7 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            <button type="button" className="font-medium text-zinc-200">
+            <button type="button" className="group font-medium text-zinc-200">
               <span>USD</span>
               <ChevronDownIcon
                 className={

@@ -4,26 +4,16 @@ import { classNames } from '@/helpers/utilites';
 import { BedIcon } from '@/components/icons/BedIcon';
 import { BathIcon } from '@/components/icons/BathIcon';
 import { HeartIcon } from '@/components/icons/HeartIcon';
-
-interface PropertyProps {
-  price: number;
-  currency: string;
-  title: string;
-  address: string;
-  area: string;
-  area_type: string;
-  bedrooms: number;
-  bathrooms: number;
-  image: string;
-}
+import { Property } from '@/types/property';
 
 /**
  * @todo: Must change the toLocalString() parameter on price to match currency selected
  */
-const Card: FC<{ className?: string; property: PropertyProps }> = ({
+const Card: FC<{ className?: string; property: Property }> = ({
   className,
   property,
 }) => {
+  const rand = Math.floor(Math.random() * (9 - 1 + 1) + 1);
   return (
     <div
       className={classNames(
@@ -34,7 +24,7 @@ const Card: FC<{ className?: string; property: PropertyProps }> = ({
       <Image
         width={500}
         height={500}
-        src={property?.image}
+        src={`/img/properties/property${rand}.jpg`}
         alt={''}
         className="object-cover"
       />
@@ -48,7 +38,7 @@ const Card: FC<{ className?: string; property: PropertyProps }> = ({
         </button>
         <span className="text-lg font-semibold text-lavender-500">
           {property?.currency}
-          {property?.price.toLocaleString('en-US')}
+          {property?.sales_price?.toLocaleString('en-US')}
         </span>
         <h2 className="text-lg font-semibold">{property?.title}</h2>
         <p className="mb-4 text-sm font-medium text-zinc-500">

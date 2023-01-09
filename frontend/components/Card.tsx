@@ -7,13 +7,13 @@ import { HeartIcon } from '@/components/icons/HeartIcon';
 import { Property } from '@/types/property';
 
 /**
- * @todo: Must change the toLocalString() parameter on price to match currency selected
+ * @todo: Must change the toLocalString('en-US') parameter on price to match currency selected
  */
-const Card: FC<{ className?: string; property: Property }> = ({
-  className,
-  property,
-}) => {
-  const rand = Math.floor(Math.random() * (9 - 1 + 1) + 1);
+const Card: FC<{
+  property: Property;
+  className?: string;
+  loading?: boolean;
+}> = ({ className, property, loading = false }) => {
   return (
     <div
       className={classNames(
@@ -21,41 +21,48 @@ const Card: FC<{ className?: string; property: Property }> = ({
         'overflow-hidden rounded-xl bg-white shadow-lg',
       )}
     >
-      <Image
-        width={500}
-        height={500}
-        src={`/img/properties/property${rand}.jpg`}
-        alt={''}
-        className="object-cover"
-      />
-      <div className="relative p-6">
-        <button
-          className="absolute top-4 right-4 rounded-lg border border-zinc-200 bg-white p-2 text-zinc-500 shadow hover:text-pink-500"
-          type="button"
-        >
-          <span className="sr-only">Favorite this property</span>
-          <HeartIcon className="h-4 w-4" />
-        </button>
-        <span className="text-lg font-semibold text-lavender-500">
-          {property?.currency}
-          {property?.sales_price?.toLocaleString('en-US')}
-        </span>
-        <h2 className="text-lg font-semibold">{property?.title}</h2>
-        <p className="mb-4 text-sm font-medium text-zinc-500">
-          {property?.address}
-        </p>
-        <div className="flex justify-between">
-          <div className="flex items-center font-medium">
-            <BedIcon className="mr-2 h-5 w-5" /> {property.bedrooms} Bed
+      {loading ? (
+        <div>Loading</div>
+      ) : (
+        <>
+          <Image
+            width={500}
+            height={500}
+            src={property?.image}
+            alt={''}
+            className="object-cover"
+          />
+          <div className="relative p-6">
+            <button
+              className="absolute top-4 right-4 rounded-lg border border-zinc-200 bg-white p-2 text-zinc-500 shadow hover:text-pink-500"
+              type="button"
+              title="Favorite this property"
+            >
+              <span className="sr-only">Favorite this property</span>
+              <HeartIcon className="h-4 w-4" />
+            </button>
+            <span className="text-base font-semibold text-lavender-500 md:text-lg">
+              {property?.currency}
+              {property?.sales_price?.toLocaleString()}
+            </span>
+            <h2 className="font-semibold md:text-lg">{property?.title}</h2>
+            <p className="mb-4 text-sm font-medium text-zinc-500">
+              {property?.address}
+            </p>
+            <div className="flex justify-between text-sm md:text-base">
+              <div className="flex items-center font-medium">
+                <BedIcon className="mr-2 h-5 w-5" /> {property.bedrooms} Bed
+              </div>
+              <div className="flex items-center font-medium">
+                <BathIcon className="mr-2 h-5 w-5" /> {property.bathrooms} Bath
+              </div>
+              <div className="flex items-center font-medium">
+                {property.area_size?.toLocaleString()} {property.area_type}
+              </div>
+            </div>
           </div>
-          <div className="flex items-center font-medium">
-            <BathIcon className="mr-2 h-5 w-5" /> {property.bathrooms} Bath
-          </div>
-          <div className="flex items-center font-medium">
-            {property.area} {property.area_type}
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Property;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

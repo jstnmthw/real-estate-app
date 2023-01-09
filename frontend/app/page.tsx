@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import Header from '@/components/Header';
-import { classNames } from '@/helpers/utilites';
 import { Lexend } from '@next/font/google';
+import { classNames } from '@/helpers/utilites';
+import Header from '@/components/Header';
 import HeroSearchBar from '@/components/HeroSearchBar';
 import Card from '@/components/Card';
 import Footer from '@/components/Footer';
@@ -15,12 +15,13 @@ const lexend = Lexend({
 });
 
 const property = {
+  id: 7,
   title: 'Garden Villas',
   sales_price: 1450000,
   rental_price: 2000,
   currency: '$',
   address: '123 Candy Cane Lane, Elm Street, CA',
-  area: '76',
+  area_size: 76,
   area_type: 'sqm',
   bedrooms: 1,
   bathrooms: 1,
@@ -29,7 +30,7 @@ const property = {
 
 export default function Page() {
   return (
-    <div className="bg-main">
+    <div className="bg-main bg-no-repeat">
       <Header />
       <main className="container">
         {/* Hero */}

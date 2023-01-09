@@ -1,34 +1,39 @@
 'use client';
 
-import { FC } from 'react';
-import useSWR from 'swr';
-import axios from '@/lib/axios';
+import { FC, useEffect, useState } from 'react';
 import { Property } from '@/types/property';
+import axios from '@/lib/axios';
 import Card from '@/components/Card';
+import CardLoading from '@/components/CardLoading';
 
 const FeaturedProperties: FC = () => {
-  let {
-    data: properties,
-    error,
-    mutate,
-  } = useSWR<any, string>('/api/property', () =>
+  const [properties, setProperties] = useState<Property[] | undefined>(
+    undefined,
+  );
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(true);
     axios
       .get('/api/property')
       .then((res) => {
-        return res.data.data;
+        setProperties(res.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         throw error;
-      }),
-  );
-
-  properties = properties?.slice(0, 4);
+      });
+  }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-5 md:grid-cols-4">
-      {properties?.map((property: Property, index: number) => {
-        return <Card key={index} property={property} />;
-      })}
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-3 xl:grid-cols-4">
+      {loading
+        ? [...Array(10)].map((k, i) => {
+            return <CardLoading key={i} />;
+          })
+        : properties?.map((property: Property, index: number) => {
+            return <Card key={index} property={property} />;
+          })}
     </div>
   );
 };

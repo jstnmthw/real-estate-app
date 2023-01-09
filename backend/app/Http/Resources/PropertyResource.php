@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Property;
+use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -31,7 +32,9 @@ class PropertyResource extends JsonResource
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
             'is_self_listed' => $this->is_self_listed,
-            'image' => "/img/properties/property{$randImg}.jpg",
+            'image' => Cache::remember($this->id.'_image', 5600, function () use ($randImg) {
+                return "/img/properties/property{$randImg}.jpg";
+            }),
             'area_type' => $this->area_type,
             'area_size' => $this->area_size,
             'plot_size' => $this->plot_size,

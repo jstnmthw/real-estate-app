@@ -26,7 +26,7 @@ const HeroSearchBar: FC = () => {
       </div>
       <div className="flex grid flex-col items-center gap-4 rounded-xl bg-white px-8 py-6 shadow-xl md:grid-cols-10 md:gap-6">
         <div className="col-span-full md:col-span-3">
-          <div className="mb-2 text-sm text-zinc-500">Location</div>
+          <div className="mb-2 text-sm font-medium text-zinc-500">Location</div>
           <div className="group flex cursor-pointer items-center justify-between text-left font-semibold">
             Bangkok, Thailand
             <div className="rounded bg-lavender-50 p-0.5 text-lavender-500 transition-all group-hover:bg-lavender-100">
@@ -35,7 +35,7 @@ const HeroSearchBar: FC = () => {
           </div>
         </div>
         <div className="col-span-full md:col-span-2">
-          <div className="mb-2 text-sm text-zinc-500">Price</div>
+          <div className="mb-2 text-sm font-medium text-zinc-500">Price</div>
           <div className="group flex cursor-pointer items-center justify-between text-left font-semibold">
             100k - 250k
             <div className="rounded bg-lavender-50 p-0.5 text-lavender-500 transition-all group-hover:bg-lavender-100">
@@ -44,7 +44,7 @@ const HeroSearchBar: FC = () => {
           </div>
         </div>
         <div className="col-span-1">
-          <div className="mb-2 text-sm text-zinc-500">Bed(s)</div>
+          <div className="mb-2 text-sm font-medium text-zinc-500">Bed(s)</div>
           <div className="group flex cursor-pointer items-center justify-between text-left font-semibold">
             1+
             <div className="rounded bg-lavender-50 p-0.5 text-lavender-500 transition-all group-hover:bg-lavender-100">
@@ -53,7 +53,7 @@ const HeroSearchBar: FC = () => {
           </div>
         </div>
         <div className="col-span-1">
-          <div className="mb-2 text-sm text-zinc-500">Bath(s)</div>
+          <div className="mb-2 text-sm font-medium text-zinc-500">Bath(s)</div>
           <div className="group flex cursor-pointer items-center justify-between text-left font-semibold">
             1+
             <div className="rounded bg-lavender-50 p-0.5 text-lavender-500 transition-all group-hover:bg-lavender-100">

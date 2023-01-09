@@ -8,6 +8,7 @@ import HeroSearchBar from '@/components/HeroSearchBar';
 import Card from '@/components/Card';
 import Footer from '@/components/Footer';
 import FeaturedProperties from '@/components/FeaturedProperties';
+import { SparklesIcon } from '@heroicons/react/24/solid';
 
 const lexend = Lexend({
   variable: '--font-inter',
@@ -38,22 +39,26 @@ export default function Page() {
           <div
             className={classNames(
               lexend.className,
-              'col-span-1 py-20 text-3xl font-bold tracking-tight md:max-w-xl lg:text-6xl',
+              'col-span-1 py-20 text-3xl font-bold tracking-tight md:max-w-xl lg:text-5xl xl:text-6xl',
             )}
           >
             Thailand&apos;s #1 property listing platform
           </div>
-          <Card property={property} className={'relative mt-10 max-w-xs'} />
+          <Card
+            priority
+            property={property}
+            className={'relative mt-10 max-w-xs'}
+          />
         </div>
         <div className="mb-20 max-w-4xl">
           <HeroSearchBar />
         </div>
         <h2
           className={classNames(
-            lexend.className,
-            'mb-5 text-3xl font-bold tracking-tight',
+            'mb-5 text-2xl font-bold tracking-tight text-lavender-700',
           )}
         >
+          <SparklesIcon className="relative -top-0.5 mr-1 inline-block h-6 w-6 text-lavender-400" />{' '}
           Featured Properties
         </h2>
         <FeaturedProperties />

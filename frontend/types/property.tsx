@@ -1,4 +1,5 @@
 export interface Property {
+  id: number;
   sales_price: number;
   rental_price: number;
   currency: string;

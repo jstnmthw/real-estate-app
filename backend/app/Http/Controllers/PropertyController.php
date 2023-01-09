@@ -6,7 +6,6 @@ use App\Models\Property;
 use App\Http\Resources\PropertyResource;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Request;
@@ -17,19 +16,22 @@ class PropertyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return PropertyResource::collection(Property::paginate());
+        $limit = $request->input('limit', 20) > 20 ? 20 : $request->input('limit');
+        return PropertyResource::collection(Property::paginate($limit));
     }
 
     /**
      * Search within meilisearch
      *
+     * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function search(Request $request)
+    public function search(Request $request): AnonymousResourceCollection
     {
         return PropertyResource::collection(
             Property::search(
@@ -52,7 +54,7 @@ class PropertyController extends Controller
      *
      * @return JsonResponse
      */
-    public function create()
+    public function create(): JsonResponse
     {
         return response()->json();
     }
@@ -63,7 +65,7 @@ class PropertyController extends Controller
      * @param StorePropertyRequest $request
      * @return JsonResponse
      */
-    public function store(StorePropertyRequest $request)
+    public function store(StorePropertyRequest $request): JsonResponse
     {
         return response()->json();
     }
@@ -74,7 +76,7 @@ class PropertyController extends Controller
      * @param Property $property
      * @return JsonResponse
      */
-    public function show(Property $property)
+    public function show(Property $property): JsonResponse
     {
         return response()->json(new PropertyResource($property));
     }
@@ -85,7 +87,7 @@ class PropertyController extends Controller
      * @param Property $property
      * @return JsonResponse
      */
-    public function edit(Property $property)
+    public function edit(Property $property): JsonResponse
     {
         return response()->json();
     }
@@ -97,7 +99,7 @@ class PropertyController extends Controller
      * @param Property $property
      * @return JsonResponse
      */
-    public function update(UpdatePropertyRequest $request, Property $property)
+    public function update(UpdatePropertyRequest $request, Property $property): JsonResponse
     {
         return response()->json();
     }
@@ -108,7 +110,7 @@ class PropertyController extends Controller
      * @param Property $property
      * @return JsonResponse
      */
-    public function destroy(Property $property)
+    public function destroy(Property $property): JsonResponse
     {
         return response()->json();
     }

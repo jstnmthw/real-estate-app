@@ -2,48 +2,87 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Database\Factories\PropertyFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 use Laravel\Scout\Searchable;
 
 /**
- * @property integer id
- * @property string title
- * @property string description
- * @property boolean for_sale
- * @property boolean for_rent
- * @property integer sales_price
- * @property integer rental_price
- * @property integer bedrooms
- * @property integer bathrooms
- * @property boolean is_self_listed
- * @property string image
- * @property string area_type
- * @property integer area_size
- * @property integer plot_size
- * @property float latitude
- * @property float longitude
- * @property integer currency_id
- * @property integer property_type_id
- * @property Project project
- * @property integer project_id
- * @property integer country_id
- * @property integer province_id
- * @property integer district_id
- * @property Geo country
- * @property Geo province
- * @property Geo district
- * @property Carbon created_by
- * @property Carbon updated_by
- * @property Carbon created_at
- * @property Carbon updated_at
- * @property string sales_title
- * @property string rental_title
- * @property PropertyType propertyType
+ * App\Models\Property
+ *
+ * @property int $id
+ * @property string|null $title
+ * @property string|null $description
+ * @property int|null $for_sale
+ * @property int|null $for_rent
+ * @property int|null $sales_price
+ * @property int|null $rental_price
+ * @property int|null $bedrooms
+ * @property int|null $bathrooms
+ * @property int $is_self_listed
+ * @property string|null $area_type
+ * @property int|null $area_size
+ * @property int|null $plot_size
+ * @property string $latitude
+ * @property string $longitude
+ * @property int|null $currency_id
+ * @property int|null $property_type_id
+ * @property int|null $project_id
+ * @property int|null $country_id
+ * @property int|null $province_id
+ * @property int|null $district_id
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $sales_title
+ * @property string|null $rental_title
+ * @property-read Collection|User[] $agents
+ * @property-read int|null $agents_count
+ * @property-read Collection|User[] $contacts
+ * @property-read int|null $contacts_count
+ * @property-read Geo|null $country
+ * @property-read User|null $createdBy
+ * @property-read Geo|null $district
+ * @property-read Project|null $project
+ * @property-read PropertyType|null $propertyType
+ * @property-read Geo|null $province
+ * @method  PropertyFactory factory(...$parameters)
+ * @method Builder|Property newModelQuery()
+ * @method Builder|Property newQuery()
+ * @method Builder|Property query()
+ * @method Builder|Property whereAreaSize($value)
+ * @method Builder|Property whereAreaType($value)
+ * @method Builder|Property whereBathrooms($value)
+ * @method Builder|Property whereBedrooms($value)
+ * @method Builder|Property whereCountryId($value)
+ * @method Builder|Property whereCreatedAt($value)
+ * @method Builder|Property whereCreatedBy($value)
+ * @method Builder|Property whereCurrencyId($value)
+ * @method Builder|Property whereDescription($value)
+ * @method Builder|Property whereDistrictId($value)
+ * @method Builder|Property whereForRent($value)
+ * @method Builder|Property whereForSale($value)
+ * @method Builder|Property whereId($value)
+ * @method Builder|Property whereIsSelfListed($value)
+ * @method Builder|Property whereLatitude($value)
+ * @method Builder|Property whereLongitude($value)
+ * @method Builder|Property wherePlotSize($value)
+ * @method Builder|Property whereProjectId($value)
+ * @method Builder|Property wherePropertyTypeId($value)
+ * @method Builder|Property whereProvinceId($value)
+ * @method Builder|Property whereRentalPrice($value)
+ * @method Builder|Property whereSalesPrice($value)
+ * @method Builder|Property whereTitle($value)
+ * @method Builder|Property whereUpdatedAt($value)
+ * @method Builder|Property whereUpdatedBy($value)
+ * @mixin Builder
  */
 class Property extends Model
 {
@@ -53,7 +92,7 @@ class Property extends Model
     const AREA_SQFT = 'sqft';
     const AREA_SQR = 'sqr';
 
-    public static array $areaTypes = [
+    public array $areaTypes = [
         self::AREA_SQM,
         self::AREA_SQFT,
         self::AREA_SQR

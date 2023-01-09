@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\GeoFactory;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,6 +11,46 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Scout\Searchable;
 
+/**
+ * App\Models\Geo
+ *
+ * @property int $id
+ * @property int|null $parent_id
+ * @property int|null $left
+ * @property int|null $right
+ * @property int $depth
+ * @property string $name
+ * @property string $alternames
+ * @property string $country
+ * @property string $a1code
+ * @property string $level
+ * @property int $population
+ * @property string $lat
+ * @property string $long
+ * @property string $timezone
+ * @method Builder|Geo countries()
+ * @method Builder|Geo districts($parentId = null)
+ * @method GeoFactory factory(...$parameters)
+ * @method Builder|Geo newModelQuery()
+ * @method Builder|Geo newQuery()
+ * @method Builder|Geo provinces($parentId = null)
+ * @method Builder|Geo query()
+ * @method Builder|Geo whereA1code($value)
+ * @method Builder|Geo whereAlternames($value)
+ * @method Builder|Geo whereCountry($value)
+ * @method Builder|Geo whereDepth($value)
+ * @method Builder|Geo whereId($value)
+ * @method Builder|Geo whereLat($value)
+ * @method Builder|Geo whereLeft($value)
+ * @method Builder|Geo whereLevel($value)
+ * @method Builder|Geo whereLong($value)
+ * @method Builder|Geo whereName($value)
+ * @method Builder|Geo whereParentId($value)
+ * @method Builder|Geo wherePopulation($value)
+ * @method Builder|Geo whereRight($value)
+ * @method Builder|Geo whereTimezone($value)
+ * @mixin Builder
+ */
 class Geo extends Model
 {
     use HasFactory,

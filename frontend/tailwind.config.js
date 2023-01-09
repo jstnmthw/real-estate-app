@@ -39,6 +39,9 @@ module.exports = {
         main: "url('/img/main-bg.jpg')",
         main_dark: "url('/img/main-bg_dark.jpg')",
       },
+      padding: {
+        'aspect-ratio': '56.25%',
+      },
       container: {
         center: true,
         padding: {

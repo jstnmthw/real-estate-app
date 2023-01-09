@@ -20,6 +20,7 @@ class PropertyResource extends JsonResource
      */
     public function toArray($request): array
     {
+        $randImg = fake()->numberBetween(1, 9);
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -31,6 +32,7 @@ class PropertyResource extends JsonResource
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
             'is_self_listed' => $this->is_self_listed,
+            'image' => "/img/properties/property{$randImg}.jpg",
             'area_type' => $this->area_type,
             'area_size' => $this->area_size,
             'plot_size' => $this->plot_size,

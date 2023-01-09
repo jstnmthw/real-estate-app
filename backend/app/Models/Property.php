@@ -110,7 +110,10 @@ class Property extends Model
      *
      * @var array
      */
-    protected $appends = ['sales_title', 'rental_title'];
+    protected $appends = [
+        'sales_title',
+        'rental_title'
+    ];
 
     /**
      * Eager loading relationships to modal (Use with caution)
@@ -207,16 +210,32 @@ class Property extends Model
             ->wherePivot('group', 'contact');
     }
 
+    /**
+     * Get the country associated with this property.
+     *
+     * @return BelongsTo
+     */
     public function country(): BelongsTo
     {
         return $this->belongsTo(Geo::class);
     }
 
+    /**
+     * Get the province associated with this property.
+     *
+     * @return BelongsTo
+     */
     public function province(): BelongsTo
     {
         return $this->belongsTo(Geo::class);
     }
 
+
+    /**
+     * Get the district associated with this property.
+     *
+     * @return BelongsTo
+     */
     public function district(): BelongsTo
     {
         return $this->belongsTo(Geo::class);

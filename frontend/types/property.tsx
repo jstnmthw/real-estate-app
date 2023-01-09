@@ -5,7 +5,7 @@ export interface Property {
   currency: string;
   title: string;
   address: string;
-  area: string;
+  area_size: number;
   area_type: string;
   bedrooms: number;
   bathrooms: number;

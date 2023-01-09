@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,6 +10,41 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
 
+/**
+ * @property integer id
+ * @property string title
+ * @property string description
+ * @property boolean for_sale
+ * @property boolean for_rent
+ * @property integer sales_price
+ * @property integer rental_price
+ * @property integer bedrooms
+ * @property integer bathrooms
+ * @property boolean is_self_listed
+ * @property string image
+ * @property string area_type
+ * @property integer area_size
+ * @property integer plot_size
+ * @property float latitude
+ * @property float longitude
+ * @property integer currency_id
+ * @property integer property_type_id
+ * @property Project project
+ * @property integer project_id
+ * @property integer country_id
+ * @property integer province_id
+ * @property integer district_id
+ * @property Geo country
+ * @property Geo province
+ * @property Geo district
+ * @property Carbon created_by
+ * @property Carbon updated_by
+ * @property Carbon created_at
+ * @property Carbon updated_at
+ * @property string sales_title
+ * @property string rental_title
+ * @property PropertyType propertyType
+ */
 class Property extends Model
 {
     use HasFactory, Searchable;
@@ -37,7 +73,12 @@ class Property extends Model
      */
     protected $appends = ['sales_title', 'rental_title'];
 
-    protected $with = ['propertyType', 'district'];
+    /**
+     * Eager loading relationships to modal (Use with caution)
+     *
+     * @var array
+     */
+    protected $with = [];
 
     /**
      * Get the name of the index associated with the model.

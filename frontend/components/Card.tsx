@@ -7,12 +7,18 @@ import { HeartIcon } from '@/components/icons/HeartIcon';
 import { Property } from '@/types/property';
 
 /**
+ *
  * @todo: Must change the toLocalString('en-US') parameter on price to match currency selected
+ * @param property
+ * @param className
+ * @param priority Sets whether the image should be a priority load (see: https://nextjs.org/docs/basic-features/image-optimization#priority)
+ * @constructor
  */
 const Card: FC<{
   property: Property;
   className?: string;
-}> = ({ className, property }) => {
+  priority?: boolean;
+}> = ({ property, className, priority = false }) => {
   return (
     <div
       className={classNames(
@@ -26,6 +32,7 @@ const Card: FC<{
         src={property?.image}
         alt={''}
         className="object-cover"
+        priority={priority}
       />
       <div className="relative p-6">
         <button
@@ -44,7 +51,7 @@ const Card: FC<{
         <p className="mb-4 text-sm font-medium text-zinc-500">
           {property?.address}
         </p>
-        <div className="flex justify-between text-sm md:text-base">
+        <div className="flex justify-between text-sm xl:text-base">
           <div className="flex items-center font-medium">
             <BedIcon className="mr-2 h-5 w-5" /> {property.bedrooms} Bed
           </div>

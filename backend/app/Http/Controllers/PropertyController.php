@@ -22,7 +22,7 @@ class PropertyController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $limit = $request->input('limit', 20) > 20 ? 20 : $request->input('limit');
-        return PropertyResource::collection(Property::paginate($limit));
+        return PropertyResource::collection(Property::query()->paginate($limit));
     }
 
     /**

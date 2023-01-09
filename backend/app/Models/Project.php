@@ -20,19 +20,19 @@ use Illuminate\Support\Carbon;
  * @property int|null $updated_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @method ProjectFactory factory(...$parameters)
- * @method Builder|Project newModelQuery()
- * @method Builder|Project newQuery()
- * @method Builder|Project query()
- * @method Builder|Project whereCreatedAt($value)
- * @method Builder|Project whereCreatedBy($value)
- * @method Builder|Project whereDescription($value)
- * @method Builder|Project whereId($value)
- * @method Builder|Project whereLatitude($value)
- * @method Builder|Project whereLongitude($value)
- * @method Builder|Project whereTitle($value)
- * @method Builder|Project whereUpdatedAt($value)
- * @method Builder|Project whereUpdatedBy($value)
+ * @method static ProjectFactory factory(...$parameters)
+ * @method static Builder|Project newModelQuery()
+ * @method static Builder|Project newQuery()
+ * @method static Builder|Project query()
+ * @method static Builder|Project whereCreatedAt($value)
+ * @method static Builder|Project whereCreatedBy($value)
+ * @method static Builder|Project whereDescription($value)
+ * @method static Builder|Project whereId($value)
+ * @method static Builder|Project whereLatitude($value)
+ * @method static Builder|Project whereLongitude($value)
+ * @method static Builder|Project whereTitle($value)
+ * @method static Builder|Project whereUpdatedAt($value)
+ * @method static Builder|Project whereUpdatedBy($value)
  * @mixin Builder
  */
 class Project extends Model

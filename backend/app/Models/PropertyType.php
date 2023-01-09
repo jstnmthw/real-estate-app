@@ -15,14 +15,14 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @method PropertyTypeFactory factory(...$parameters)
- * @method Builder|PropertyType newModelQuery()
- * @method Builder|PropertyType newQuery()
- * @method Builder|PropertyType query()
- * @method Builder|PropertyType whereCreatedAt($value)
- * @method Builder|PropertyType whereId($value)
- * @method Builder|PropertyType whereName($value)
- * @method Builder|PropertyType whereUpdatedAt($value)
+ * @method static PropertyTypeFactory factory(...$parameters)
+ * @method static Builder|PropertyType newModelQuery()
+ * @method static Builder|PropertyType newQuery()
+ * @method static Builder|PropertyType query()
+ * @method static Builder|PropertyType whereCreatedAt($value)
+ * @method static Builder|PropertyType whereId($value)
+ * @method static Builder|PropertyType whereName($value)
+ * @method static Builder|PropertyType whereUpdatedAt($value)
  * @mixin Builder
  */
 class PropertyType extends Model

@@ -21,18 +21,18 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read User|null $user
- * @method Builder|UserSocialLogin newModelQuery()
- * @method Builder|UserSocialLogin newQuery()
- * @method Builder|UserSocialLogin query()
- * @method Builder|UserSocialLogin whereAccessToken($value)
- * @method Builder|UserSocialLogin whereCreatedAt($value)
- * @method Builder|UserSocialLogin whereExpires($value)
- * @method Builder|UserSocialLogin whereExternalId($value)
- * @method Builder|UserSocialLogin whereId($value)
- * @method Builder|UserSocialLogin whereRefreshToken($value)
- * @method Builder|UserSocialLogin whereScopes($value)
- * @method Builder|UserSocialLogin whereUpdatedAt($value)
- * @method Builder|UserSocialLogin whereUserId($value)
+ * @method static Builder|UserSocialLogin newModelQuery()
+ * @method static Builder|UserSocialLogin newQuery()
+ * @method static Builder|UserSocialLogin query()
+ * @method static Builder|UserSocialLogin whereAccessToken($value)
+ * @method static Builder|UserSocialLogin whereCreatedAt($value)
+ * @method static Builder|UserSocialLogin whereExpires($value)
+ * @method static Builder|UserSocialLogin whereExternalId($value)
+ * @method static Builder|UserSocialLogin whereId($value)
+ * @method static Builder|UserSocialLogin whereRefreshToken($value)
+ * @method static Builder|UserSocialLogin whereScopes($value)
+ * @method static Builder|UserSocialLogin whereUpdatedAt($value)
+ * @method static Builder|UserSocialLogin whereUserId($value)
  * @mixin Builder
  */
 class UserSocialLogin extends Model

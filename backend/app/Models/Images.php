@@ -18,17 +18,17 @@ use Illuminate\Support\Carbon;
  * @property string $type
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @method ImagesFactory factory(...$parameters)
- * @method Builder|Images newModelQuery()
- * @method Builder|Images newQuery()
- * @method Builder|Images query()
- * @method Builder|Images whereCreatedAt($value)
- * @method Builder|Images whereHash($value)
- * @method Builder|Images whereId($value)
- * @method Builder|Images whereName($value)
- * @method Builder|Images wherePath($value)
- * @method Builder|Images whereType($value)
- * @method Builder|Images whereUpdatedAt($value)
+ * @method static ImagesFactory factory(...$parameters)
+ * @method static Builder|Images newModelQuery()
+ * @method static Builder|Images newQuery()
+ * @method static Builder|Images query()
+ * @method static Builder|Images whereCreatedAt($value)
+ * @method static Builder|Images whereHash($value)
+ * @method static Builder|Images whereId($value)
+ * @method static Builder|Images whereName($value)
+ * @method static Builder|Images wherePath($value)
+ * @method static Builder|Images whereType($value)
+ * @method static Builder|Images whereUpdatedAt($value)
  * @mixin Builder
  */
 class Images extends Model

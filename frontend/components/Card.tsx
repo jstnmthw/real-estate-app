@@ -27,8 +27,8 @@ const Card: FC<{
       )}
     >
       <Image
-        width={500}
-        height={500}
+        width={288}
+        height={162}
         src={property?.image}
         alt={''}
         className="object-cover"
@@ -51,7 +51,7 @@ const Card: FC<{
         <p className="mb-4 text-sm font-medium text-zinc-500">
           {property?.address}
         </p>
-        <div className="flex justify-between text-sm xl:text-base">
+        <div className="flex justify-between text-sm">
           <div className="flex items-center font-medium">
             <BedIcon className="mr-2 h-5 w-5" /> {property.bedrooms} Bed
           </div>

@@ -53,10 +53,12 @@ const Card: FC<{
         </p>
         <div className="flex justify-between text-sm">
           <div className="flex items-center font-medium">
-            <BedIcon className="mr-2 h-5 w-5" /> {property.bedrooms} Bed
+            <BedIcon className="mr-2 h-5 w-5 text-lavender-300" />{' '}
+            {property.bedrooms} Bed
           </div>
           <div className="flex items-center font-medium">
-            <BathIcon className="mr-2 h-5 w-5" /> {property.bathrooms} Bath
+            <BathIcon className="mr-2 h-5 w-5 text-lavender-300" />{' '}
+            {property.bathrooms} Bath
           </div>
           <div className="flex items-center font-medium">
             {property.area_size?.toLocaleString()} {property.area_type}

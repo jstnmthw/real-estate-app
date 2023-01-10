@@ -11,11 +11,12 @@ const FeaturedProperties: FC = () => {
     undefined,
   );
   const [loading, setLoading] = useState<boolean>(true);
+  const limit = 12;
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get('/api/property')
+      .get('/api/property?limit=' + limit)
       .then((res) => {
         setProperties(res.data.data);
         setLoading(false);
@@ -26,13 +27,21 @@ const FeaturedProperties: FC = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-5 md:grid-cols-3 xl:grid-cols-4">
+    <div className="flex snap-x flex-nowrap gap-5 overflow-x-scroll px-2 pb-5">
       {loading
-        ? [...Array(10)].map((k, i) => {
-            return <CardLoading key={i} />;
+        ? [...Array(limit)].map((key, index) => {
+            return (
+              <div key={index} className="w-72 flex-none snap-center">
+                <CardLoading />
+              </div>
+            );
           })
         : properties?.map((property: Property, index: number) => {
-            return <Card key={index} property={property} />;
+            return (
+              <div key={index} className="w-72 flex-none snap-center">
+                <Card key={index} property={property} />
+              </div>
+            );
           })}
     </div>
   );

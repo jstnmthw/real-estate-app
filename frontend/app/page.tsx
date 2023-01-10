@@ -47,7 +47,7 @@ export default function Page() {
           <Card
             priority
             property={property}
-            className={'relative mt-10 max-w-xs'}
+            className={'relative mt-10 w-72'}
           />
         </div>
         <div className="mb-20 max-w-4xl">

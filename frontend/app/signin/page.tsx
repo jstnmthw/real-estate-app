@@ -183,11 +183,13 @@ export default function Page() {
           </div>
         </div>
         <div className="relative hidden w-0 flex-1 lg:block">
+          <div className="absolute inset-0 z-10"></div>
           <Image
             src={'/img/properties/property6.jpg'}
             alt={''}
-            fill
-            className="object-cover"
+            width={1300}
+            height={675}
+            className="h-full w-full object-cover"
           />
         </div>
       </div>

@@ -52,7 +52,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.buy'
         ], [
             'label' => 'searchbar.buy',
@@ -63,7 +63,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.rent'
         ], [
             'label' => 'searchbar.rent',
@@ -74,7 +74,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.sell'
         ], [
             'label' => 'searchbar.sell',
@@ -85,7 +85,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label'=> 'searchbar.location'
         ], [
             'label' => 'searchbar.location',
@@ -96,7 +96,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.price'
         ], [
             'label' => 'searchbar.price',
@@ -107,7 +107,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.beds'
         ], [
             'label' => 'searchbar.beds',
@@ -118,7 +118,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.baths'
         ], [
             'label' => 'searchbar.baths',
@@ -129,7 +129,7 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        PageItems::query()->updateOrCreate([
+        $pageItem = PageItems::query()->updateOrCreate([
             'label' => 'searchbar.submit-btn'
         ], [
             'label' => 'searchbar.submit-btn',

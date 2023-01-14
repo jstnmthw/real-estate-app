@@ -54,9 +54,13 @@ class Page extends Model
      */
     public function getRouteKeyName(): string
     {
-        return 'name';
+        return 'label';
     }
 
+    /**
+     * Get the text items of this page
+     * @return HasMany
+     */
     public function items(): HasMany
     {
         return $this->hasMany(PageItems::class);

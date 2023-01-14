@@ -14,6 +14,7 @@ use Spatie\Translatable\HasTranslations;
  * @property int $id
  * @property string $label
  * @property array $value
+ * @property string $category
  * @property int $page_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at

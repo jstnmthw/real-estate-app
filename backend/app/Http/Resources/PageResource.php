@@ -62,9 +62,17 @@ class PageResource extends JsonResource
         App::setLocale($this->locale);
         // return parent::toArray($request);
         return [
-            'meta_title' => $this->meta_title,
-            'meta_desc' => $this->meta_desc,
-            'items' => PageItemResource::collection($this->items),
+            'meta' => [
+                'title' => $this->meta_title,
+                'description' => $this->meta_desc,
+            ],
+            'items' => PageItemResource::collection($this->items)
+                ->collection
+                ->mapWithKeys(function ($item) {
+                    return [
+                        $item['label'] => $item['value']
+                    ];
+                }),
         ];
     }
 }

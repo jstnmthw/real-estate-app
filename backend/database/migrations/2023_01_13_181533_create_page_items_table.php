@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('label');
             $table->json('value')->nullable();
             $table->string('category');
-            $table->foreignId('page_id');
+            $table->foreignId('page_id')->nullable();
             $table->timestamps();
         });
     }

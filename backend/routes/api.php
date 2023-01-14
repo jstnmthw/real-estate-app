@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Resources\UserResource;
 use Igaster\LaravelCities\GeoController;
@@ -21,14 +22,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return new UserResource($request->user());
 });
 
-Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
-    //..
-});
-
 /**
  * Geo Routing
  */
-Route::group(['prefix' => 'geo'], function() {
+Route::group(['prefix' => 'geo', 'middleware' => 'throttle:api'], function() {
     Route::get('search/{name}/{parent_id?}',[GeoController::class, 'search']);
     Route::get('item/{id}',[GeoController::class, 'item']);
     Route::get('children/{id}',[GeoController::class, 'children']);
@@ -51,4 +48,17 @@ Route::group(['prefix' => 'property', 'middleware' => 'throttle:api'], function(
     Route::post('destroy/{property}', [PropertyController::class, 'destroy'])->name('property.destroy');
     Route::post('edit/{property}', [PropertyController::class, 'edit'])->name('property.edit');
     Route::post('create/{property}', [PropertyController::class, 'create'])->name('property.create');
+});
+
+/**
+ * Page Routing
+ */
+Route::group(['prefix' => 'page', 'middleware' => 'throttle:api'], function() {
+    Route::get('/', [PageController::class, 'index'])->name('page.list');
+    Route::get('{locale}/{page}', [PageController::class, 'show'])->name('page.show');
+    Route::post('update/{page}', [PageController::class, 'update'])->name('page.update');
+    Route::post('store/{page}', [PageController::class, 'store'])->name('page.store');
+    Route::post('destroy/{page}', [PageController::class, 'destroy'])->name('page.destroy');
+    Route::post('edit/{page}', [PageController::class, 'edit'])->name('page.edit');
+    Route::post('create/{page}', [PageController::class, 'create'])->name('page.create');
 });

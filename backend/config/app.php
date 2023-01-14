@@ -6,6 +6,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Constants
+    |--------------------------------------------------------------------------
+    |
+    | Define custom  constants that will be used throughout the application.
+    |
+    */
+    'locales' => [
+        'en',
+        'th',
+        'ru',
+        'zh'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
@@ -147,7 +162,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
+    | Auto-loaded Service Providers
     |--------------------------------------------------------------------------
     |
     | The service providers listed here will be automatically loaded on the

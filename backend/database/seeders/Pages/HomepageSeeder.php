@@ -41,6 +41,17 @@ class HomepageSeeder extends Seeder
         $pageItem->save();
 
         /** @var PageItems $pageItem */
+        $pageItem = $page->items()->updateOrCreate([
+            'label' => 'featured.title'
+        ], [
+            'label' => 'featured.title',
+            'category' => 'homepage'
+        ]);
+        $pageItem->setTranslations('value', [
+            'en' => 'Features Properties'
+        ]);
+        $pageItem->save();
+
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.buy'
         ], [
@@ -52,7 +63,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.rent'
         ], [
@@ -64,7 +74,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.sell'
         ], [
@@ -76,7 +85,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label'=> 'searchbar.location'
         ], [
@@ -88,7 +96,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.price'
         ], [
@@ -100,7 +107,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.beds'
         ], [
@@ -112,7 +118,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.baths'
         ], [
@@ -124,7 +129,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->save();
 
-        /** @var PageItems $pageItem */
         PageItems::query()->updateOrCreate([
             'label' => 'searchbar.submit-btn'
         ], [
@@ -133,18 +137,6 @@ class HomepageSeeder extends Seeder
         ]);
         $pageItem->setTranslations('value', [
             'en' => 'Browse Properties'
-        ]);
-        $pageItem->save();
-
-        /** @var PageItems $pageItem */
-        $pageItem = $page->items()->updateOrCreate([
-            'label' => 'featured.title'
-        ], [
-            'label' => 'featured.title',
-            'category' => 'homepage'
-        ]);
-        $pageItem->setTranslations('value', [
-            'en' => 'Features Properties'
         ]);
         $pageItem->save();
     }

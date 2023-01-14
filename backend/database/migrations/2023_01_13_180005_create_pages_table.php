@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->json('meta_title');
-            $table->json('meta_desc');
+            $table->text('label');
+            $table->json('meta_title')->nullable();
+            $table->json('meta_desc')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

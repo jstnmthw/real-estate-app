@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('page_items', function (Blueprint $table) {
             $table->id();
             $table->text('label');
-            $table->json('value');
+            $table->json('value')->nullable();
+            $table->string('category');
             $table->foreignId('page_id');
             $table->timestamps();
         });

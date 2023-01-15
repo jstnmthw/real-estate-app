@@ -17,8 +17,8 @@ services:
     volumes:
       - '.:/var/www/html'
     networks:
-      - real-estate_main
+      - real-estate-backend_main
 
 networks:
-  real-estate_main:
+  real-estate-backend_main:
     external: true

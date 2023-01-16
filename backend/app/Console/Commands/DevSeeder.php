@@ -41,15 +41,15 @@ class DevSeeder extends Command
         $this->truncateAll();
 
         $this->info('1/9 - Creating Agents & Users...');
-        $this->createUsers( 1000000);
+        $this->createUsers( 10000);
         $this->info('');
 
         $this->info('2/9 - Creating Projects...');
-        $this->createProjects(500000);
+        $this->createProjects(5000);
         $this->info('');
 
         $this->info('3/9 - Creating Properties...');
-        $this->createProperties(2000000);
+        $this->createProperties(20000);
         $this->info('');
 
         $this->info('4/9 - Assigning role user to all users...');
@@ -59,7 +59,7 @@ class DevSeeder extends Command
         $this->info('');
 
         $this->info('5/9 - Assigning role agent to some users...');
-        $agents = User::query()->where('id', '<=', 500000);
+        $agents = User::query()->where('id', '<=', 5000);
         $agentRole = Role::findByName('agent');
         $this->assignRoleToUsers($agents, $agentRole);
 
@@ -69,7 +69,7 @@ class DevSeeder extends Command
         $this->info('');
 
         $this->info('7/9 - Creating contacts...');
-        $this->createUsers( 500000);
+        $this->createUsers( 5000);
         $this->info('');
 
         $this->info('8/9 - Assigning role contact...');

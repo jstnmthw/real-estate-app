@@ -18,6 +18,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { classNames } from '@/helpers/utilites';
 import { Logo } from '@/components/icons/Logo';
 import Link from 'next/link';
+import LocaleSelect from '@/components/LocaleSelect';
 
 const menu = [
   {
@@ -89,6 +90,7 @@ export default function Header() {
             Special announcements can go here too
           </div>
           <div className="flex space-x-5">
+            <LocaleSelect />
             <button type="button" className="group font-medium text-zinc-200">
               <span>English</span>
               <ChevronDownIcon

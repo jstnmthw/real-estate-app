@@ -7,6 +7,8 @@ import FeaturedProperties from '@/components/FeaturedProperties';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { classNames } from '@/helpers/utilites';
 import { Lexend } from '@next/font/google';
+import { getPageProps } from '@/i18n/get-page-props';
+import { Locale } from '@/i18n/confg';
 
 const lexend = Lexend({
   variable: '--font-inter',
@@ -26,23 +28,18 @@ const property = {
   bathrooms: 1,
   image: '/img/properties/property7.jpg',
 };
-const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-async function getPageData() {
-  const res = await fetch('http://api/api/page/en/homepage');
-  if (!res.ok) {
-    throw new Error('Failed fetching page data');
-  }
-  return await res.json();
-}
-
-export default async function Page() {
-  const page = await getPageData();
+export default async function Page({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const page = await getPageProps(lang, 'homepage');
   return (
     <div className="bg-main bg-no-repeat">
       <Header />
       <div className="container">
-        <pre className="bg-gray-900  text-white shadow-lg p-5 rounded-xl text-sm">
+        <pre className="rounded-xl  bg-gray-900 p-5 text-sm text-white shadow-lg">
           {JSON.stringify(page, null, 2)}
         </pre>
       </div>

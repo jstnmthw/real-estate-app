@@ -14,7 +14,7 @@ function getLocale(request: NextRequest): string | undefined {
   // Use negotiator and intl-locale matcher to get best locale
   let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
   // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
+  const locales: string[] = i18n.locales2.map((locale) => locale.locale);
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
@@ -24,9 +24,10 @@ export function middleware(request: NextRequest) {
 
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-  const pathnameIsMissingLocale = i18n.locales.every(
+  const pathnameIsMissingLocale = i18n.locales2.every(
     (locale) =>
-      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+      !pathname.startsWith(`/${locale.locale}/`) &&
+      pathname !== `/${locale.locale}`,
   );
 
   // Let's redirect if there is no locale
@@ -41,8 +42,4 @@ export function middleware(request: NextRequest) {
 export const config = {
   // We can enable redirect just from root
   // matcher: '/',
-  matcher: [
-    // Skip all internal paths (_next)
-    '/((?!_next).*)',
-  ],
 };

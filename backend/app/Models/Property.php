@@ -92,7 +92,7 @@ class Property extends Model
     const AREA_SQFT = 'sqft';
     const AREA_SQR = 'sqr';
 
-    public array $areaTypes = [
+    public static array $areaTypes = [
         self::AREA_SQM,
         self::AREA_SQFT,
         self::AREA_SQR

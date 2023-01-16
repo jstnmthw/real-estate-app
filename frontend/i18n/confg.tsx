@@ -21,7 +21,7 @@ export const i18n = {
       icon: 'ru.svg',
     },
     {
-      locale: 'ru',
+      locale: 'zh',
       label: 'Chinese',
       native: '中国人',
       icon: 'zh.svg',

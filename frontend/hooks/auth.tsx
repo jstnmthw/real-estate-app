@@ -176,7 +176,7 @@ export const useAuth = ({
       });
     }
 
-    window.location.pathname = '/signin';
+    window.location.pathname = '/en/signin';
   }, [error, mutate, setCookies]);
 
   useEffect(() => {

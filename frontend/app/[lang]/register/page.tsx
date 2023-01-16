@@ -19,7 +19,7 @@ export default function Page() {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
             <Link
-              href={'/signin'}
+              href={'/en/signin'}
               className="font-medium text-blue-600 hover:text-blue-600"
             >
               sign in to your account

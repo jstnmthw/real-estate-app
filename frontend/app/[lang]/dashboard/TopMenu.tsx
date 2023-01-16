@@ -1,6 +1,6 @@
 import { Bars3BottomLeftIcon, BellIcon } from '@heroicons/react/24/outline';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import UserMenu from '@/app/dashboard/UserMenu';
+import UserMenu from '@/app/[lang]/dashboard/UserMenu';
 import { Dispatch, SetStateAction } from 'react';
 
 export default function TopMenu({

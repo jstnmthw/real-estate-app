@@ -107,7 +107,7 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            <Link href={'signin'} className="font-medium text-zinc-200">
+            <Link href={'/en/signin'} className="font-medium text-zinc-200">
               Sign in
             </Link>
           </div>
@@ -303,7 +303,7 @@ export default function Header() {
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
                   <Link
-                    href={'signin'}
+                    href={'/en/signin'}
                     className="text-lavender-600 hover:text-lavender-500"
                   >
                     Sign in

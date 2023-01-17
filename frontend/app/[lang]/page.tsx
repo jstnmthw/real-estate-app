@@ -7,8 +7,8 @@ import FeaturedProperties from '@/components/FeaturedProperties';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { classNames } from '@/helpers/utilites';
 import { Lexend } from '@next/font/google';
-import { getPageProps } from '@/i18n/get-page-props';
-import { Locale } from '@/i18n/confg';
+// import { getPageProps } from '@/i18n/get-page-props';
+// import { Locale } from '@/i18n/confg';
 
 const lexend = Lexend({
   variable: '--font-inter',
@@ -32,15 +32,15 @@ const property = {
 export default async function Page({
   params: { lang },
 }: {
-  params: { lang: Locale };
+  params: { lang: any };
 }) {
-  const page = await getPageProps(lang, 'homepage');
+  // const page = await getPageProps(lang, 'homepage');
   return (
     <div className="bg-main bg-no-repeat">
       <Header />
       <div className="container">
         <pre className="rounded-xl  bg-gray-900 p-5 text-sm text-white shadow-lg">
-          {JSON.stringify(page, null, 2)}
+          {/*{JSON.stringify(page, null, 2)}*/}
         </pre>
       </div>
       <main className="container">

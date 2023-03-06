@@ -38,6 +38,8 @@ use Illuminate\Support\Facades\App;
  */
 class PageResource extends JsonResource
 {
+    private ?string $locale;
+
     /**
      * Create a new resource instance.
      *
@@ -57,7 +59,7 @@ class PageResource extends JsonResource
      * @param Request $request
      * @return array
      */
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         App::setLocale($this->locale);
         // return parent::toArray($request);

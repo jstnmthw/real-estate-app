@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PageResource;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -22,10 +21,9 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(): JsonResponse
     {
         return response()->json();
     }
@@ -48,11 +46,9 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Page $page
      * @return JsonResponse
      */
-    public function update(Request $request, Page $page): JsonResponse
+    public function update(): JsonResponse
     {
         return response()->json();
     }
@@ -60,10 +56,9 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Page $page
      * @return JsonResponse
      */
-    public function destroy(Page $page): JsonResponse
+    public function destroy(): JsonResponse
     {
         return response()->json();
     }

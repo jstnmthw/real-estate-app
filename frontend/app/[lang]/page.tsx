@@ -35,14 +35,14 @@ export default async function Page({
 }) {
   // const page = await getPageProps(lang, 'homepage');
 
-  // const t = useTranslations('Index');
+  const t = useTranslations('Index');
 
   return (
     <div className="bg-main bg-no-repeat">
       <Header />
       <div className="container">
         <pre className="rounded-xl  bg-gray-900 p-5 text-sm text-white shadow-lg">
-          {/*{JSON.stringify(page, null, 2)}*/}
+          {JSON.stringify(t ?? 'none', null, 2)}
         </pre>
       </div>
       <main className="container">

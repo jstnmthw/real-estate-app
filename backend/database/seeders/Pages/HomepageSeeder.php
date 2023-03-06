@@ -20,9 +20,10 @@ class HomepageSeeder extends Seeder
         ], [
            'label' => 'Homepage'
         ]);
-        $page->setTranslations('meta_title',
-            ['en' => 'RealEstate - Thailand\'s #1 property listing database.']
-        );
+        $page->setTranslations('meta_title', [
+            'en' => 'RealEstate - Thailand\'s #1 property listing database.',
+            'ru' => 'RuEstate - Thailand\'s #1 property listing database.',
+        ]);
         $page->setTranslations('meta_desc',
             ['en' => '1,425,000 Current listings the major metropolitan areas including Bangkok, Phuket, Pattaya, Chiang Mai and more...']
         );

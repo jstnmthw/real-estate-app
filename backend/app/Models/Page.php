@@ -49,6 +49,11 @@ class Page extends Model
     ];
 
     /**
+     * @var mixed|string
+     */
+    public mixed $category;
+
+    /**
      * Attribute to use for routing (default: id)
      * @return string
      */

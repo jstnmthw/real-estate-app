@@ -8,7 +8,11 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-export default function LocaleLayout({ children }: { children: ReactNode }) {
+export default async function LocaleLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const locale = useLocale();
   return (
     <html lang={locale} className={inter.className}>

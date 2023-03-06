@@ -4,11 +4,10 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import HeroSearchBar from '@/components/HeroSearchBar';
 import FeaturedProperties from '@/components/FeaturedProperties';
+import { useTranslations } from 'next-intl';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { classNames } from '@/helpers/utilites';
 import { Lexend } from '@next/font/google';
-// import { getPageProps } from '@/i18n/get-page-props';
-// import { Locale } from '@/i18n/confg';
 
 const lexend = Lexend({
   variable: '--font-inter',
@@ -35,6 +34,9 @@ export default async function Page({
   params: { lang: any };
 }) {
   // const page = await getPageProps(lang, 'homepage');
+
+  // const t = useTranslations('Index');
+
   return (
     <div className="bg-main bg-no-repeat">
       <Header />

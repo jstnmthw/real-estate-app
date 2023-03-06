@@ -221,7 +221,7 @@ export default function Header() {
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <Link
-              href={'register'}
+              href={'signin'}
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-lavender-600 drop-shadow hover:text-lavender-800"
             >
               Sign up

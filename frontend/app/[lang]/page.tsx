@@ -4,10 +4,10 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import HeroSearchBar from '@/components/HeroSearchBar';
 import FeaturedProperties from '@/components/FeaturedProperties';
-import { useTranslations } from 'next-intl';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { classNames } from '@/helpers/utilites';
 import { Lexend } from '@next/font/google';
+import { useTranslations } from 'next-intl';
 
 const lexend = Lexend({
   variable: '--font-inter',
@@ -28,23 +28,11 @@ const property = {
   image: '/img/properties/property7.jpg',
 };
 
-export default async function Page({
-  params: { lang },
-}: {
-  params: { lang: any };
-}) {
-  // const page = await getPageProps(lang, 'homepage');
-
+export default function Page() {
   const t = useTranslations('Index');
-
   return (
     <div className="bg-main bg-no-repeat">
       <Header />
-      <div className="container">
-        <pre className="rounded-xl  bg-gray-900 p-5 text-sm text-white shadow-lg">
-          {JSON.stringify(t ?? 'none', null, 2)}
-        </pre>
-      </div>
       <main className="container">
         <div className="items-center md:grid md:grid-cols-2">
           <div
@@ -53,7 +41,7 @@ export default async function Page({
               'col-span-1 py-20 text-3xl font-bold tracking-tight md:max-w-xl lg:text-5xl xl:text-6xl',
             )}
           >
-            Thailand&apos;s #1 property listing platform
+            {t('title')}
           </div>
           <Card
             priority

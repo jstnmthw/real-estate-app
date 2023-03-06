@@ -502,13 +502,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accept-language-parser@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "accept-language-parser@npm:1.5.0"
-  checksum: e32124e500f67d30da7dd15462b3ff7a718df327ff8bd1c97ae02d8ee5cf0917a3f600bf3b171965b1f95fef480b96d36752f674eff2cb0069c276d9783d32f6
-  languageName: node
-  linkType: hard
-
 "acorn-jsx@npm:^5.3.2":
   version: 5.3.2
   resolution: "acorn-jsx@npm:5.3.2"
@@ -2857,24 +2850,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"negotiator@npm:^0.6.3":
+"negotiator@npm:0.6.3, negotiator@npm:^0.6.3":
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
   checksum: b8ffeb1e262eff7968fc90a2b6767b04cfd9842582a9d0ece0af7049537266e7b2506dfb1d107a32f06dd849ab2aea834d5830f7f4d0e5cb7d36e1ae55d021d9
   languageName: node
   linkType: hard
 
-"next-intl@npm:^2.11.0-beta.2":
-  version: 2.11.0-beta.2
-  resolution: "next-intl@npm:2.11.0-beta.2"
+"next-intl@npm:^2.12.0-beta.1":
+  version: 2.12.0-beta.1
+  resolution: "next-intl@npm:2.12.0-beta.1"
   dependencies:
-    accept-language-parser: ^1.5.0
+    "@formatjs/intl-localematcher": 0.2.32
+    negotiator: 0.6.3
     server-only: 0.0.1
-    use-intl: 2.11.0-alpha.2
+    use-intl: 2.12.0-alpha.1
   peerDependencies:
     next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 37f814b6b36a2deffbbe0d1947930b1b34850347d175cb14c8a09496154d457c594655535d12a96e15fcb3e396781136afc5b3857306ccb3d0763062aefe619e
+  checksum: fcb054bcdf8db3f4bcdb24aa86234f815ab2188a5a609a779ec968b4b97468a1c4fc52bd5741e685b4d27306c81b395975a95ccf8caa4072c4e230681e4106e0
   languageName: node
   linkType: hard
 
@@ -3493,7 +3487,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     negotiator: ^0.6.3
     next: ^13.1.1
-    next-intl: ^2.11.0-beta.2
+    next-intl: ^2.12.0-beta.1
     postcss: ^8.4.19
     prettier: ^2.8.0
     prettier-plugin-tailwindcss: ^0.2.0
@@ -4205,15 +4199,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-intl@npm:2.11.0-alpha.2":
-  version: 2.11.0-alpha.2
-  resolution: "use-intl@npm:2.11.0-alpha.2"
+"use-intl@npm:2.12.0-alpha.1":
+  version: 2.12.0-alpha.1
+  resolution: "use-intl@npm:2.12.0-alpha.1"
   dependencies:
     "@formatjs/ecma402-abstract": ^1.11.4
     intl-messageformat: ^9.3.18
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 3d35b713a87f0f3277c8d1a1723733136d6dfb0bf20c609d46490256f486c7c4e90b0566b54b38d226083f9e924126480ba4d5e49e22bd401fda68a02897bff7
+  checksum: 79cf358a132d7680d0b5c97e6d2c66b4eb59ae739439ea6b4842846e323f991e42d2e537723b14d72147162a7ab50cb74bed65e6b089911a63d51336d4329e98
   languageName: node
   linkType: hard
 

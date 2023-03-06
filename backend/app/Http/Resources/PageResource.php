@@ -62,7 +62,6 @@ class PageResource extends JsonResource
     public function toArray(Request $request): array
     {
         App::setLocale($this->locale);
-        // return parent::toArray($request);
         return [
             'meta' => [
                 'title' => $this->meta_title,

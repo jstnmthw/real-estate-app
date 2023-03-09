@@ -24,6 +24,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Project newModelQuery()
  * @method static Builder|Project newQuery()
  * @method static Builder|Project query()
+ * @method static Builder|Project count()
  * @method static Builder|Project whereCreatedAt($value)
  * @method static Builder|Project whereCreatedBy($value)
  * @method static Builder|Project whereDescription($value)

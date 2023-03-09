@@ -63,6 +63,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User newQuery()
  * @method static Builder|User permission($permissions)
  * @method static Builder|User query()
+ * @method static Builder|User count()
  * @method static Builder|User role($roles, $guard = null)
  * @method static Builder|User whereAddress($value)
  * @method static Builder|User whereAvatar($value)

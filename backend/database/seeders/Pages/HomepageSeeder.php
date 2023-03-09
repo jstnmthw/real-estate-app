@@ -31,19 +31,25 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'hero.title'
+            'label' => 'hero.title',
+            'category' => 'homepage'
         ], [
             'label' => 'hero.title',
             'category' => 'homepage'
         ]);
         $pageItem->setTranslations('value', [
-            'en' => 'Thailand\'s #1 property listing platform'
+            'en' => 'Thailand\'s #1 property listing platform',
+            'de' => 'Thailands führende Plattform für Immobilienanzeigen',
+            'fr' => 'La plateforme d\'annonces immobilières n° 1 en Thaïlande',
+            'th' => 'แพลตฟอร์มประกาศอสังหาริมทรัพย์อันดับ 1 ของประเทศไทย',
+            'ru' => 'Платформа №1 по продаже недвижимости в Таиланде',
         ]);
         $pageItem->save();
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.buy'
+            'label' => 'searchbar.buy',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.buy',
             'category' => 'searchbar'
@@ -55,7 +61,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.rent'
+            'label' => 'searchbar.rent',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.rent',
             'category' => 'searchbar'
@@ -67,7 +74,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.sell'
+            'label' => 'searchbar.sell',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.sell',
             'category' => 'searchbar'
@@ -79,7 +87,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label'=> 'searchbar.location'
+            'label'=> 'searchbar.location',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.location',
             'category' => 'searchbar'
@@ -91,7 +100,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.price'
+            'label' => 'searchbar.price',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.price',
             'category' => 'searchbar'
@@ -103,7 +113,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.beds'
+            'label' => 'searchbar.beds',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.beds',
             'category' => 'searchbar'
@@ -115,7 +126,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.baths'
+            'label' => 'searchbar.baths',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.baths',
             'category' => 'searchbar'
@@ -127,7 +139,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.submit-btn'
+            'label' => 'searchbar.submit-btn',
+            'category' => 'searchbar'
         ], [
             'label' => 'searchbar.submit-btn',
             'category' => 'searchbar'
@@ -139,7 +152,8 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'featured.title'
+            'label' => 'featured.title',
+            'category' => 'homepage'
         ], [
             'label' => 'featured.title',
             'category' => 'homepage'

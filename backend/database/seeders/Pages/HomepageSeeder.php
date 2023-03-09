@@ -31,11 +31,11 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'hero.title',
-            'category' => 'homepage'
+            'label' => 'title',
+            'category' => 'hero'
         ], [
-            'label' => 'hero.title',
-            'category' => 'homepage'
+            'label' => 'title',
+            'category' => 'hero'
         ]);
         $pageItem->setTranslations('value', [
             'en' => 'Thailand\'s #1 property listing platform',
@@ -48,10 +48,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.buy',
+            'label' => 'buy',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.buy',
+            'label' => 'buy',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -61,10 +61,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.rent',
+            'label' => 'rent',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.rent',
+            'label' => 'rent',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -74,10 +74,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.sell',
+            'label' => 'sell',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.sell',
+            'label' => 'sell',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -87,10 +87,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label'=> 'searchbar.location',
+            'label'=> 'location',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.location',
+            'label' => 'location',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -100,10 +100,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.price',
+            'label' => 'price',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.price',
+            'label' => 'price',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -113,10 +113,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.beds',
+            'label' => 'beds',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.beds',
+            'label' => 'beds',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -126,10 +126,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.baths',
+            'label' => 'baths',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.baths',
+            'label' => 'baths',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -139,10 +139,10 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'searchbar.submit-btn',
+            'label' => 'submit-btn',
             'category' => 'searchbar'
         ], [
-            'label' => 'searchbar.submit-btn',
+            'label' => 'submit-btn',
             'category' => 'searchbar'
         ]);
         $pageItem->setTranslations('value', [
@@ -152,11 +152,11 @@ class HomepageSeeder extends Seeder
 
         /** @var PageItems $pageItem */
         $pageItem = $page->items()->updateOrCreate([
-            'label' => 'featured.title',
-            'category' => 'homepage'
+            'label' => 'title',
+            'category' => 'featured-properties'
         ], [
-            'label' => 'featured.title',
-            'category' => 'homepage'
+            'label' => 'title',
+            'category' => 'featured-properties'
         ]);
         $pageItem->setTranslations('value', [
             'en' => 'Features Properties'

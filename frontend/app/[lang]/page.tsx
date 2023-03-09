@@ -10,7 +10,7 @@ import { Lexend } from '@next/font/google';
 import { useTranslations } from 'next-intl';
 
 const lexend = Lexend({
-  variable: '--font-inter',
+  variable: '--font-lexend',
   subsets: ['latin'],
 });
 
@@ -29,7 +29,7 @@ const property = {
 };
 
 export default function Page() {
-  const t = useTranslations('Index');
+  const t = useTranslations('items');
   return (
     <div className="bg-main bg-no-repeat">
       <Header />
@@ -41,7 +41,7 @@ export default function Page() {
               'col-span-1 py-20 text-3xl font-bold tracking-tight md:max-w-xl lg:text-5xl xl:text-6xl',
             )}
           >
-            {t('title')}
+            {t('searchbar-buy')}
           </div>
           <Card
             priority

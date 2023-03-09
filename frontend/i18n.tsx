@@ -1,14 +1,13 @@
 import { getRequestConfig } from 'next-intl/server';
 
 export default getRequestConfig(async ({ locale }) => ({
-  messages: {
-    Index: {
-      title: 'Home',
-      description: 'This is the home page.',
-    },
-    LocaleSwitcher: {
-      switchLocale:
-        'Switch to {locale, select, de {German} en {English} other {Unknown}}',
-    },
-  },
+  messages: await getPageTranslations(),
 }));
+
+const host = process.env.NEXT_PUBLIC_API_HOST;
+
+async function getPageTranslations() {
+  return await fetch(`${host}/api/page/en/homepage`)
+    .then((response) => response.json())
+    .then((data) => data);
+}

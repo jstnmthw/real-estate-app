@@ -29,7 +29,7 @@ const Card: FC<{
       <Image
         width={288}
         height={162}
-        src={property?.image}
+        src={property.image}
         alt={''}
         className="object-cover"
         priority={priority}

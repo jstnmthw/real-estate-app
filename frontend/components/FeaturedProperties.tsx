@@ -12,11 +12,12 @@ const FeaturedProperties: FC = () => {
   );
   const [loading, setLoading] = useState<boolean>(true);
   const limit = 12;
+  const host = process.env.NEXT_PUBLIC_API_HOST;
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get('/api/property?limit=' + limit)
+      .get(`${host}/api/property?limit=${limit}`)
       .then((res) => {
         setProperties(res.data.data);
         setLoading(false);
@@ -24,7 +25,7 @@ const FeaturedProperties: FC = () => {
       .catch((error) => {
         throw error;
       });
-  }, []);
+  }, [host]);
 
   return (
     <div className="flex snap-x flex-nowrap gap-5 overflow-x-scroll px-2 pb-5">

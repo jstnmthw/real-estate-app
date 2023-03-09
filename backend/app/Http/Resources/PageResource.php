@@ -67,13 +67,17 @@ class PageResource extends JsonResource
                 'title' => $this->meta_title,
                 'description' => $this->meta_desc,
             ],
-            'items' => PageItemResource::collection($this->items)
+            'page' => PageItemResource::collection($this->items)
                 ->collection
-                ->mapWithKeys(function ($item) {
-                    return [
-                        $item['label'] => $item['value']
-                    ];
-                }),
+                ->groupBy('category')
+                ->map(function ($category) {
+                    return collect($category)
+                        ->mapWithKeys(function($category) {
+                            return [
+                                $category['label'] => $category['value']
+                            ];
+                        });
+                })
         ];
     }
 }

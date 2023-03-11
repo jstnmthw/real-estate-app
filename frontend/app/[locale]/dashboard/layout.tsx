@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactNode, useState } from 'react';
-import Sidebar from '@/app/[lang]/dashboard/Sidebar';
-import TopMenu from '@/app/[lang]/dashboard/TopMenu';
+import Sidebar from '@/app/[locale]/dashboard/Sidebar';
+import TopMenu from '@/app/[locale]/dashboard/TopMenu';
 export default function RootLayout({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

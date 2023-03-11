@@ -19,7 +19,7 @@ export default async function LocaleLayout({
   const locale = useLocale();
 
   // Show a 404 error if the user requests an unknown locale
-  if (params.lang !== locale) {
+  if (params.locale !== locale) {
     notFound();
   }
   return (

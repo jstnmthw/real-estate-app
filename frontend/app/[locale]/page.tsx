@@ -29,7 +29,7 @@ const property = {
 };
 
 export default function Page() {
-  const t = useTranslations('items');
+  const t = useTranslations('page');
   return (
     <div className="bg-main bg-no-repeat">
       <Header />
@@ -41,7 +41,7 @@ export default function Page() {
               'col-span-1 py-20 text-3xl font-bold tracking-tight md:max-w-xl lg:text-5xl xl:text-6xl',
             )}
           >
-            {t('searchbar-buy')}
+            {t('hero.title')}
           </div>
           <Card
             priority
@@ -58,7 +58,7 @@ export default function Page() {
           )}
         >
           <SparklesIcon className="relative -top-0.5 mr-1 inline-block h-6 w-6 text-lavender-400" />{' '}
-          Featured Properties
+          {t('featured-properties.title')}
         </h2>
         <FeaturedProperties />
       </main>

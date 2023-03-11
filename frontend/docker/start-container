@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-if [ ! -z "$WWWUSER" ]; then
-    usermod -u $WWWUSER sail
+if [ ! -z "$WWWUSER" ] && [ ! -z "$WWWGROUP" ]; then
+    usermod -u $WWWUSER app
 fi
 
-yarn dev
+if [ "$NODE_ENV" = "development" ]; then
+    yarn dev
+fi
+
+if [ "$NODE_ENV" = "production" ]; then
+    yarn build
+    yarn start
+fi

@@ -13,7 +13,9 @@ services:
     ports:
       - '3000:3000'
     environment:
+      WWWGROUP: '${WWWGROUP}'
       WWWUSER: '${WWWUSER}'
+      NODE_ENV: '${NODE_ENV}'
     volumes:
       - '.:/var/www/html'
     networks:

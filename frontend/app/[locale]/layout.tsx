@@ -1,6 +1,6 @@
 import '@/app/globals.css';
 import { ReactNode } from 'react';
-import { Inter } from '@next/font/google';
+import { Inter } from "next/font/google";
 import { useLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 

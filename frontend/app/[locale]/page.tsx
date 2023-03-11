@@ -6,7 +6,7 @@ import HeroSearchBar from '@/components/HeroSearchBar';
 import FeaturedProperties from '@/components/FeaturedProperties';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { classNames } from '@/helpers/utilites';
-import { Lexend } from '@next/font/google';
+import { Lexend } from 'next/font/google';
 import { useTranslations } from 'next-intl';
 
 const lexend = Lexend({
@@ -38,7 +38,7 @@ export default function Page() {
           <div
             className={classNames(
               lexend.className,
-              'col-span-1 py-20 text-3xl font-bold tracking-tight md:max-w-xl lg:text-5xl xl:text-6xl',
+              'col-span-1 py-20 text-5xl font-bold tracking-tight md:max-w-xl xl:text-6xl',
             )}
           >
             {t('hero.title')}

@@ -17,7 +17,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { classNames } from '@/helpers/utilites';
 import { Logo } from '@/components/icons/Logo';
-import Link from 'next/link';
+import { Link } from 'next-intl';
 import LocaleSelect from '@/components/LocaleSelect';
 
 const menu = [
@@ -25,7 +25,7 @@ const menu = [
     name: 'Buy',
     description:
       'Get a better understanding of where your traffic is coming from.',
-    href: '#',
+    href: '/buy',
     icon: HomeModernIcon,
   },
   {
@@ -100,12 +100,13 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            <Link href={'/en/signin'} className="font-medium text-zinc-200">
+            <Link href={'/signin'} className="font-medium text-zinc-200">
               Sign in
             </Link>
           </div>
         </div>
       </div>
+      `
       <div className="container">
         <div className="flex items-center justify-between border-b border-gray-100 py-4 md:justify-start md:space-x-10 md:border-0 md:py-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -221,7 +222,7 @@ export default function Header() {
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <Link
-              href={'signin'}
+              href={'/signin'}
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-lavender-600 drop-shadow hover:text-lavender-800"
             >
               Sign up
@@ -296,7 +297,7 @@ export default function Header() {
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
                   <Link
-                    href={'/en/signin'}
+                    href={'/signin'}
                     className="text-lavender-600 hover:text-lavender-500"
                   >
                     Sign in

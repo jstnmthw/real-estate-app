@@ -1,11 +1,10 @@
 import Header from '@/components/Header';
 import React from 'react';
 import Image from 'next/image';
+import fetcher from '@/lib/fetcher';
 
 async function getData() {
-  await fetch('http://localhost/sanctum/csrf-cookie');
-  return await fetch('http://localhost/api/property/search');
-  // return res.json();
+  return fetcher('/api/property/search');
 }
 
 export default async function Page() {
@@ -16,6 +15,7 @@ export default async function Page() {
         <Header />
       </div>
       <div className="grid grid-cols-6">
+        {JSON.stringify(data, null, 2)}
         <div className="col-span-6 p-4 lg:col-span-4">
           <div className="flex rounded-3xl border border-neutral-200 bg-white p-4 shadow">
             <Image

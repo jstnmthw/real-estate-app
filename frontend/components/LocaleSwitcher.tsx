@@ -12,9 +12,7 @@ export default function LocaleSwitcher({
   defaultLocale: string;
 }) {
   const pathname = usePathname();
-  const currentLocaleLabel = locales.find(
-    (locale) => locale.code == defaultLocale,
-  );
+  const currentLocale = locales.find((locale) => locale.code === defaultLocale);
   return (
     <Popover className="relative">
       {({ open }) => (
@@ -25,7 +23,7 @@ export default function LocaleSwitcher({
               'group inline-flex items-center rounded-md text-base text-sm font-medium hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2 focus:ring-offset-lavender-1000',
             )}
           >
-            <span>{currentLocaleLabel?.label}</span>
+            <span>{currentLocale?.label}</span>
             <ChevronDownIcon
               className={classNames(
                 open ? 'text-lavender-500' : 'text-lavender-700',

@@ -1,17 +1,28 @@
 import React from 'react';
 import fetcher from '@/lib/fetcher';
+import TopNavBar from '@/components/TopNavBar';
+import Footer from '@/components/Footer';
+import { useLocale } from 'next-intl';
+import Card from '@/components/Card';
+import { Property } from '@/types/property';
 
 async function getData() {
-  return fetcher('/api/property/search');
+  return fetcher<Property[]>('/api/property/search');
 }
 
 export default async function Page() {
-  const data = await getData();
+  const locale = useLocale();
+  // const t = useTranslations('page');
+  const properties = await getData();
   return (
-    <div>
-      <pre className="h-96 w-96 overflow-scroll bg-black text-xs text-lime-400">
-        {JSON.stringify(data, null, 2)}
-      </pre>
+    <div className="bg-main bg-no-repeat">
+      <TopNavBar defaultLocale={locale} />
+      <main className="container grid grid-cols-4 gap-4">
+        {properties.map((property: Property) => {
+          return <Card key={property.id} property={property} />;
+        })}
+      </main>
+      <Footer />
     </div>
   );
 }

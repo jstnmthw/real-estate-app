@@ -1,16 +1,7 @@
 import { getRequestConfig } from 'next-intl/server';
 import fetcher from '@/lib/fetcher';
 
-export const locales = {
-  en: 'English',
-  de: 'German',
-  fr: 'French',
-  th: 'Thai',
-  ru: 'Russia',
-  zh: 'Chinese (Simplified)',
-};
-
-export const locales2 = [
+export const locales = [
   {
     label: 'English',
     native: 'English',

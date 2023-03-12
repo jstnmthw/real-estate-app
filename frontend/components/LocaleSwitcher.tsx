@@ -1,5 +1,5 @@
 import { Link } from 'next-intl';
-import { locales2 } from '@/i18n';
+import { locales } from '@/i18n';
 import { Fragment } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Popover, Transition } from '@headlessui/react';
@@ -12,7 +12,7 @@ export default function LocaleSwitcher({
   defaultLocale: string;
 }) {
   const pathname = usePathname();
-  const currentLocaleLabel = locales2.find(
+  const currentLocaleLabel = locales.find(
     (locale) => locale.code == defaultLocale,
   );
   return (
@@ -46,7 +46,7 @@ export default function LocaleSwitcher({
             <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-56 -translate-x-1/2 transform px-2 sm:px-0">
               <div className="overflow-hidden">
                 <div className="relative grid w-48 rounded-lg bg-white px-5 py-8 shadow-lg ring-1 ring-black ring-opacity-5 sm:p-4">
-                  {locales2.map((locale) => {
+                  {locales.map((locale) => {
                     return (
                       <div key={locale.code} className="flex">
                         <Link

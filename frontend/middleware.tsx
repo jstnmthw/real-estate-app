@@ -2,7 +2,7 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { locales } from '@/i18n';
 
 export default createIntlMiddleware({
-  locales: Object.keys(locales),
+  locales: locales.map((locale) => locale.code),
   defaultLocale: 'en',
 });
 

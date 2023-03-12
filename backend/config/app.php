@@ -15,6 +15,7 @@ return [
     'locales' => [
         'en',
         'fr',
+        'de',
         'th',
         'ru',
         'zh'

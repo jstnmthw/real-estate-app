@@ -1,13 +1,13 @@
 import React from 'react';
 import Card from '@/components/Card';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import TopNavBar from '@/components/TopNavBar';
 import HeroSearchBar from '@/components/HeroSearchBar';
 import FeaturedProperties from '@/components/FeaturedProperties';
-import { SparklesIcon } from '@heroicons/react/24/solid';
-import { classNames } from '@/helpers/utilites';
 import { Lexend } from 'next/font/google';
-import { useTranslations } from 'next-intl';
+import { classNames } from '@/helpers/utilites';
+import { useLocale, useTranslations } from 'next-intl';
+import { SparklesIcon } from '@heroicons/react/24/solid';
 
 const lexend = Lexend({
   variable: '--font-lexend',
@@ -29,10 +29,11 @@ const property = {
 };
 
 export default function Page() {
+  const locale = useLocale();
   const t = useTranslations('page');
   return (
     <div className="bg-main bg-no-repeat">
-      <Header />
+      <TopNavBar defaultLocale={locale} />
       <main className="container">
         <div className="items-center md:grid md:grid-cols-2">
           <div

@@ -1,7 +1,5 @@
 'use client';
 
-import { Fragment } from 'react';
-import { Popover, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
   BookmarkSquareIcon,
@@ -14,11 +12,13 @@ import {
   ShieldCheckIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { classNames } from '@/helpers/utilites';
-import { Logo } from '@/components/icons/Logo';
 import { Link } from 'next-intl';
-import LocaleSelect from '@/components/LocaleSelect';
+import { Fragment } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Popover, Transition } from '@headlessui/react';
+import { Logo } from '@/components/icons/Logo';
+import { classNames } from '@/helpers/utilites';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 const menu = [
   {
@@ -80,7 +80,11 @@ const recentPosts = [
   { id: 3, name: 'Improve your customer experience', href: '#' },
 ];
 
-export default function Header() {
+export default function TopNavBar({
+  defaultLocale,
+}: {
+  defaultLocale: string;
+}) {
   return (
     <Popover className="relative bg-white md:bg-transparent">
       <div className="hidden bg-lavender-1000 py-2.5 text-sm md:block">
@@ -90,7 +94,7 @@ export default function Header() {
             Special announcements can go here too
           </div>
           <div className="flex space-x-5">
-            <LocaleSelect />
+            <LocaleSwitcher defaultLocale={defaultLocale} />
             <button type="button" className="group font-medium text-zinc-200">
               <span>USD</span>
               <ChevronDownIcon
@@ -106,7 +110,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-      `
       <div className="container">
         <div className="flex items-center justify-between border-b border-gray-100 py-4 md:justify-start md:space-x-10 md:border-0 md:py-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">

@@ -39,7 +39,6 @@ export const useAuth = ({
         return res.data.data;
       })
       .catch((error) => {
-        console.log('Now should remove');
         setCookies('Authenticated', false, { sameSite: 'lax', path: '/' });
         if (error.response.status !== 409) {
           throw error;

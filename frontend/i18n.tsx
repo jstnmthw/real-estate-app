@@ -1,5 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 import fetcher from '@/lib/fetcher';
+import { AbstractIntlMessages } from 'next-intl';
 
 export const locales = [
   {
@@ -34,5 +35,5 @@ export default getRequestConfig(async ({ locale }) => ({
 }));
 
 function getPageTranslations(locale: string) {
-  return fetcher(`/api/page/${locale}/homepage`);
+  return fetcher<AbstractIntlMessages>(`/api/page/${locale}/homepage`);
 }
